@@ -1,0 +1,29 @@
+{
+  "name": "suh-general",
+  "version": "1.0.0",
+  "description": "A set of general purpose AngularJS services and directives. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma ./specs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/suhdev/suh-general.git"
+  },
+  "keywords": [
+    "general",
+    "purpose",
+    "angular"
+  ],
+  "author": "Suhail Abood <suhail.abood@gmail.com> (suhailabood.me)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suhdev/suh-general/issues"
+  },
+  "homepage": "https://github.com/suhdev/suh-general",
+  "devDependencies": {
+    "gulp-concat": "^2.5.2",
+    "gulp-ngdocs": "^0.2.10",
+    "gulp-uglify": "^1.2.0"
+  }
+}
