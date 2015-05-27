@@ -22,8 +22,26 @@
   },
   "homepage": "https://github.com/suhdev/suh-general",
   "devDependencies": {
+    "canonical-path": "0.0.2",
     "gulp-concat": "^2.5.2",
+    "gulp-foreach": "^0.1.0",
+    "gulp-jshint": "^1.10.0",
     "gulp-ngdocs": "^0.2.10",
-    "gulp-uglify": "^1.2.0"
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.4",
+    "jasmine": "^2.3.1",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.12.32",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.5",
+    "karma-opera-launcher": "^0.1.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-safari-launcher": "^0.1.1",
+    "lodash": "^3.9.1",
+    "marked": "^0.3.3",
+    "suh-dgeni-ngdocs": "^0.6.4"
   }
 }

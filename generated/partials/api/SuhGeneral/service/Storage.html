@@ -1,0 +1,490 @@
+
+
+<a href='https://github.com///tree//../suh-general.js#L484' class='view-source pull-right uk-button uk-button-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>
+
+
+<div class="uk-block uk-block-primary uk-contrast ngdocs-header-block">
+  <div class="uk-container">
+    <h1 class="ngdocs-header-block-heading">Storage</h1>
+    <header class="api-profile-header">
+      <ol class="uk-list">
+        
+  
+
+        <li>
+          service in module <a href="api/SuhGeneral">SuhGeneral</a>
+        </li>
+      </ol>
+    </header>
+    <p>
+    
+    </p>
+  </div>
+</div>
+
+
+
+<p class="api-profile-description">
+  <p>provides an interface for localStorage objects if supported by the browser.</p>
+
+</p>
+
+
+
+<div>
+  
+
+    
+
+  
+
+  
+<h2>Methods</h2>
+<ul class="methods uk-list">
+  <li id="isEnabled">
+    <h3 class="uk-text-primary"><p><code>isEnabled();</code></p>
+
+</h3>
+    <div><p>checks whether the localStorage is enabled or not for this application</p>
+</div>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-boolean">boolean</a></td>
+    <td><p>true if localStorage is enabled for this application, false otherwise.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="store">
+    <h3 class="uk-text-primary"><p><code>store(key, data);</code></p>
+
+</h3>
+    <div><p>stores a key-value pair in the local storage or a dictionary.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        key
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        <p>either a string representing a key, or an object literal</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        data
+        
+        <div><em>(optional)</em></div>
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-any">any</a>
+      </td>
+      <td>
+        <p>any value to store on the provided key.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="remove">
+    <h3 class="uk-text-primary"><p><code>remove();</code></p>
+
+</h3>
+    <div><p>stores a key-value pair in the local storage or a dictionary</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="get">
+    <h3 class="uk-text-primary"><p><code>get(key);</code></p>
+
+</h3>
+    <div><p>Returns the data attached to a given key.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        key
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the key to retrieve its data.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+
+  </li>
+  
+  <li id="_getType">
+    <h3 class="uk-text-primary"><p><code>_getType(key, Fn);</code></p>
+
+</h3>
+    <div><p>internal function to retrieve data from the localStorage</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        key
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the key of the item to retrieve</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        Fn
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-function">function</a>
+      </td>
+      <td>
+        <p>the function to be used to convert the retrieved data</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-any">any</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-null">null</a></td>
+    <td><p>the item if available, null otherwise</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="getInteger">
+    <h3 class="uk-text-primary"><p><code>getInteger(key);</code></p>
+
+</h3>
+    <div><p>retrieves an item from the localStorage and converts it to an integer.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        key
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the key of the item to retrieve.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">number</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-null">null</a></td>
+    <td><p>the item if available, null otherwise.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="getFloat">
+    <h3 class="uk-text-primary"><p><code>getFloat(key);</code></p>
+
+</h3>
+    <div><p>retrieves an item from the localStorage and converts it to an float.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        key
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the key of the item to retrieve.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">number</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-null">null</a></td>
+    <td><p>the item if available, null otherwise.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  
+  <li id="getJSON">
+    <h3 class="uk-text-primary"><p><code>getJSON(key);</code></p>
+
+</h3>
+    <div><p>retrieves an item from the localStorage and converts it to a JSON object.</p>
+</div>
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        key
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the key of the item to retrieve.</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-null">null</a></td>
+    <td><p>the item if available, null otherwise.</p>
+</td>
+  </tr>
+</table>
+    
+
+  </li>
+  </ul>
+  
+  
+
+
+
+  
+</div>
+
+
+
+
+
+
+<div class="ngdocs-object-notes">
+
+</div>
+
+<div class="ngdocs-object-todos">
+
+</ul>
+</div>
+<a href='https://github.com/angular/angular.js/edit//../suh-general.js?message=docs(Storage)%3A%20describe%20your%20change...#L484' class='improve-docs uk-badge-primary uk-badge'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com///tree//../suh-general.js#L484' class='view-source pull-right uk-badge uk-badge-primary'>
+  <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
+</a>

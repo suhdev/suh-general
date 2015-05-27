@@ -1,0 +1,146 @@
+[
+  {
+    "path": "api/SuhGeneral",
+    "titleWords": "SuhGeneral",
+    "keywords": "and api controllers directives functionality general html module of partials provides purpose services set suhgeneral that through",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shCache",
+    "titleWords": "shCache",
+    "keywords": "an api application browser cache class factory html instance internal it key module of partials persistance provides service shcache suhcachetype suhgeneral support supports the with",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/type/SuhCacheType",
+    "titleWords": "SuhCacheType",
+    "keywords": "_gc also any api application automatically cache creates data disabled enabled from html in is items key module new object or partials persistance persistence previous restore states storage store suhcachetype suhgeneral the this to type used whether will",
+    "members": "data disable enable enabled get persist restore store"
+  },
+  {
+    "path": "api/SuhGeneral/service/shDeferredRequest",
+    "titleWords": "shDeferredRequest",
+    "keywords": "ajax api factory handle html method module partials provides requests service shdeferredrequest sherror shsuccess suhgeneral to unified",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shError",
+    "titleWords": "shError",
+    "keywords": "api factory handles html module of partials rejection service shdeferredrequest shdeferredrequests sherror suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shEventGenerator",
+    "titleWords": "shEventGenerator",
+    "keywords": "an api basic complete documentation event factory generator html implementation mechanism module of partials provides service sheventgenerator shutil suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shEventsManager",
+    "titleWords": "shEventsManager",
+    "keywords": "api complete documentation events factory handle html module partials service sheventsmanager shexception shidentitygenerator suhgeneral to",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shException",
+    "titleWords": "shException",
+    "keywords": "api code description error exception factory for generating html instance module new objects of partials service shexception suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/type/SuhException",
+    "titleWords": "SuhException",
+    "keywords": "_ge api code desc description error html module partials suhexception suhgeneral type",
+    "members": "code description"
+  },
+  {
+    "path": "api/SuhGeneral/service/shHttpModel",
+    "titleWords": "shHttpModel",
+    "keywords": "add api documentation factory html module needs partials service shhttpmodel suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shHttp",
+    "titleWords": "shHttp",
+    "keywords": "an api create factory html module network object partials provides resources service shdeferredrequest shhttp suhgeneral to",
+    "members": "byany create get kill perpareurl query search update"
+  },
+  {
+    "path": "api/SuhGeneral/service/shHttpPostQuery",
+    "titleWords": "shHttpPostQuery",
+    "keywords": "api chain factory from html module partials pattern provides request resources server service shdeferredrequest shhttppostquery suhgeneral the to using way",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shHttpQuery",
+    "titleWords": "shHttpQuery",
+    "keywords": "api chain factory from html module partials pattern provides request resources server service shdeferredrequest shhttpquery suhgeneral the to using way",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shIdentityGenerator",
+    "titleWords": "shIdentityGenerator",
+    "keywords": "api factory generate html identifiers module partials random service shidentitygenerator suhgeneral to unique",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shLocationListener",
+    "titleWords": "shLocationListener",
+    "keywords": "api changes factory for html implements listeners location module notify observer partials pattern service shexception shlocationlistener suhgeneral to",
+    "members": "_process get register unregister"
+  },
+  {
+    "path": "api/SuhGeneral/service/shSharedDataRepository",
+    "titleWords": "shSharedDataRepository",
+    "keywords": "api between controllers data factory html module partials service share shshareddatarepository suhgeneral to",
+    "members": "exists get set"
+  },
+  {
+    "path": "api/SuhGeneral/service/shStorage",
+    "titleWords": "shStorage",
+    "keywords": "an api browser by factory for html if interface localstorage module objects partials provides service shstorage suhgeneral supported the",
+    "members": "_gettype get getfloat getinteger getjson isenabled remove store"
+  },
+  {
+    "path": "api/SuhGeneral/service/shSuccess",
+    "titleWords": "shSuccess",
+    "keywords": "api be by calls cases data deferred deferredrequest factory from function html in is module object of parameter partials received resolve returns server service shsuccess single successful suhgeneral takes that the to used which",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/sHUrlInspector",
+    "titleWords": "sHUrlInspector",
+    "keywords": "api changes factory html module partials rules service shurlinspector specific suhgeneral to track url",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shUrlRules",
+    "titleWords": "shUrlRules",
+    "keywords": "api factory generate html module partials rules service shurlrules suhgeneral to url",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shUtil",
+    "titleWords": "shUtil",
+    "keywords": "api containing factory functions html module of partials service set shutil suhgeneral utility",
+    "members": "extend proxy"
+  },
+  {
+    "path": "api/SuhGeneral/service/shValidator",
+    "titleWords": "shValidator",
+    "keywords": "an api before data factory html it module object partials sending server service shvalidator suhgeneral the to used validate",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service",
+    "titleWords": "service components in SuhGeneral",
+    "keywords": "api componentgroup components html in module partials service suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/type",
+    "titleWords": "type components in SuhGeneral",
+    "keywords": "api componentgroup components html in module partials suhgeneral type",
+    "members": ""
+  }
+]
