@@ -54,5 +54,5 @@ angular.module('SuhGeneral')
 			}
 		};
 	
-		return new _gsdr;
+		return new _gsdr();
 	}]);

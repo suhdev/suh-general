@@ -66,5 +66,5 @@ angular.module('SuhGeneral')
 			}
 		};
 	
-		return new _gll;
-	}])
+		return new _gll();
+	}]);

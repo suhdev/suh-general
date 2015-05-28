@@ -137,30 +137,80 @@ describe('Util',function(){
 
 	it('should convert string to camelcase properly',function(){
 		var s = 'to-create-map';
-		expect(Util.string).toBeDefined();
-		expect(Util.string.toCamelCase).toBeDefined();
-		expect(Util.string.toCamelCase(s)).toEqual('toCreateMap');
+		expect(Util.toCamelCase).toBeDefined();
+		expect(Util.toCamelCase(s)).toEqual('toCreateMap');
 	});
 
 	it('should convert string to camelcase properly when having one term',function(){
 		var s = 'to';
-		expect(Util.string).toBeDefined();
-		expect(Util.string.toCamelCase).toBeDefined();
-		expect(Util.string.toCamelCase(s)).toEqual('to');
+		expect(Util.toCamelCase).toBeDefined();
+		expect(Util.toCamelCase(s)).toEqual('to');
 	});
 
 
 	it('should convert capitalize string',function(){
 		var s = 'to';
-		expect(Util.string).toBeDefined();
-		expect(Util.string.capitalize).toBeDefined();
-		expect(Util.string.capitalize(s)).toEqual('To');
+		expect(Util.capitalize).toBeDefined();
+		expect(Util.capitalize(s)).toEqual('To');
 	});
 
 	it('should convert string to camelcase properly when having one term',function(){
 		var s = 'o';
-		expect(Util.string).toBeDefined();
-		expect(Util.string.capitalize).toBeDefined();
-		expect(Util.string.capitalize(s)).toEqual('O');
+		expect(Util.capitalize).toBeDefined();
+		expect(Util.capitalize(s)).toEqual('O');
 	});
+
+	it('should lower the first letter of a string',function(){
+		var s = 'SUHAIL';
+		expect(Util.lowerize).toBeDefined();
+		expect(Util.lowerize(s)).toEqual('sUHAIL');
+
+	});
+
+	it('get data at a given path of an object',function(){
+		var s = {
+			ob:{
+				name:{
+					first:'Suhail',
+					last:'Abood'
+				}
+			}
+		};
+		expect(Util.getDataAt).toBeDefined();
+		expect(Util.getDataAt(s,'ob.lastname')).not.toBeDefined();
+		expect(Util.getDataAt(s,'ob.name.last')).toEqual('Abood');
+	});
+
+	it('set data at a given path of an object',function(){
+		var s = {
+			ob:{
+				name:{
+					first:'Suhail',
+					last:'Abood'
+				}
+			}
+		};
+		expect(Util.setDataAt).toBeDefined();
+		Util.setDataAt(s,'ob.name.last','John');
+		expect(Util.getDataAt(s,'ob.name.last')).toEqual('John');
+	});
+
+	it('set data at undefined path of an object',function(){
+		var s = {
+			ob:{
+				name:{
+					first:'Suhail',
+					last:'Abood'
+				}
+			}
+		};
+		expect(Util.setDataAt).toBeDefined();
+		Util.setDataAt(s,'ob.name.middle','John');
+		expect(Util.getDataAt(s,'ob.name.middle')).toEqual('John');
+		expect(Util.getDataAt(s,'ob.name.first')).toEqual('Suhail');
+		expect(Util.getDataAt(s,'ob.name.last')).toEqual('Abood');
+	});
+
+
+
 });

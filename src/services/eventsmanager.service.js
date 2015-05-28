@@ -9,7 +9,7 @@
  * @todo {urgent} complete documentation. 
  */
 angular.module("SuhGeneral")
-	.factory('shEventsManager', ['$rootScope','shIdentityGenerator','shException',function ($RT,_GIG,_GE) {
+	.factory('shEventsManager', [function () {
 		var t = function(){
 			this._e = {};
 		};
@@ -26,11 +26,13 @@ angular.module("SuhGeneral")
 			},
 			removeListener:function(l,eN){
 				if (l.listenEvents){
+					var i;
 					if (eN && this._e[eN]){
-						var i =this._e[eN].indexOf(l);
+						i =this._e[eN].indexOf(l);
 						this._e[eN].splice(i,1);
 					}else{
-						var events = l.listenEvents(),i=0,last = events.length,j;
+						var events = l.listenEvents(),last = events.length,j;
+						i = 0;
 						for(;i<last;i++){
 							if (this._e[events[i]] && 
 							(j = this._e[events[i]].indexOf(l)) !== -1){
@@ -47,7 +49,7 @@ angular.module("SuhGeneral")
 					var i=0,l=this._e[eN].length || 0;
 					for(;i<l;i++){
 						if (this._e[eN][i]){
-							this._e[eN][i].fire(eN,eD)
+							this._e[eN][i].fire(eN,eD);
 						}else{
 							this._e[eN].splice(i,1);
 							i--;
@@ -57,5 +59,5 @@ angular.module("SuhGeneral")
 				}
 			}
 		};	
-		return new t;
+		return new t();
 	}]);

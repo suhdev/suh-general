@@ -71,5 +71,5 @@ angular.module('SuhGeneral')
 		
 		return function(model){
 			return new _r(model);
-		}
-	}])
+		};
+	}]);

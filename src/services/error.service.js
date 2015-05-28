@@ -13,6 +13,6 @@ angular.module('SuhGeneral')
 					code:0x11111,
 					description:'Network error'
 				}]);
-			}
+			};
 		};
 	}]);

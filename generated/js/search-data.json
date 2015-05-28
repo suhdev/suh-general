@@ -6,15 +6,51 @@
     "members": ""
   },
   {
+    "path": "api/SuhGeneral/directive/shLocalize",
+    "titleWords": "shLocalize",
+    "keywords": "any api bind content directive dom element html key module of partials phrases provided replace sh-localize shlocalize suhgeneral the this to translation translations welcome will with",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/directive/shlocalizeAttr",
+    "titleWords": "shlocalizeAttr",
+    "keywords": "an any api attribute be binds content data directive html message module partials phrases rather sh-localize-attr-title shlocalizeattr suhgeneral than the title to translation welcome will",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/provider/shUrlRulesProvider",
+    "titleWords": "shUrlRulesProvider",
+    "keywords": "api html module partials provider shurlrulesprovider suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shUrlRules",
+    "titleWords": "shUrlRules",
+    "keywords": "$get api html module partials service shurlrules suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shBlockNavigation",
+    "titleWords": "shBlockNavigation",
+    "keywords": "api away factory from html module navigation page partials service shblocknavigation stop suhgeneral the to users",
+    "members": "block unblock"
+  },
+  {
     "path": "api/SuhGeneral/service/shCache",
     "titleWords": "shCache",
-    "keywords": "an api application browser cache class factory html instance internal it key module of partials persistance provides service shcache suhcachetype suhgeneral support supports the with",
+    "keywords": "an api application browser cache class dictionary factory html instance internal into is it key localstorage module of partials persist persistance provides service shcache suhcachetype suhgeneral support supports the this to used whole with",
     "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/interface/Persistence",
+    "titleWords": "Persistence",
+    "keywords": "_gc any api basic be by html implemented interface module must partials persistence service storage suhgeneral that",
+    "members": "get store"
   },
   {
     "path": "api/SuhGeneral/type/SuhCacheType",
     "titleWords": "SuhCacheType",
-    "keywords": "_gc also any api application automatically cache creates data disabled enabled from html in is items key module new object or partials persistance persistence previous restore states storage store suhcachetype suhgeneral the this to type used whether will",
+    "keywords": "_gc also any api application automatically cache creates data enabled false from html if in is items key module new object otherwise partials persistance persistence previous restore states storage store suhcachetype suhgeneral the this to true type use used will",
     "members": "data disable enable enabled get persist restore store"
   },
   {
@@ -30,10 +66,16 @@
     "members": ""
   },
   {
-    "path": "api/SuhGeneral/service/shEventGenerator",
-    "titleWords": "shEventGenerator",
-    "keywords": "an api basic complete documentation event factory generator html implementation mechanism module of partials provides service sheventgenerator shutil suhgeneral",
+    "path": "api/SuhGeneral/service/shEventEmitter",
+    "titleWords": "shEventEmitter",
+    "keywords": "api be by classes eventemitter exposing factory html inherited module other partials service sheventemitter suhgeneral the to",
     "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/type/EventEmitter",
+    "titleWords": "EventEmitter",
+    "keywords": "abstract an api basic be by class classes emitter emitters event eventemitter events for from html implementation inherited intended is module other partials providing suhgeneral supported the this to type",
+    "members": "addeventlistener events listeners on removeeventlistener trigger"
   },
   {
     "path": "api/SuhGeneral/service/shEventsManager",
@@ -80,7 +122,19 @@
   {
     "path": "api/SuhGeneral/service/shIdentityGenerator",
     "titleWords": "shIdentityGenerator",
-    "keywords": "api factory generate html identifiers module partials random service shidentitygenerator suhgeneral to unique",
+    "keywords": "api factory generate html identifier identifiers module partials pseudo-random random service shidentitygenerator suhgeneral the to",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/service/shLocalizer",
+    "titleWords": "shLocalizer",
+    "keywords": "an angular api app by factory files handle html localization manage module of partials providing service shlocalizer suhgeneral to translation way",
+    "members": "get isloaded load ready"
+  },
+  {
+    "path": "api/SuhGeneral/service/shLOCALE",
+    "titleWords": "shLOCALE",
+    "keywords": "api application current factory html locale module of partials representing service shlocale string suhgeneral the",
     "members": ""
   },
   {
@@ -98,7 +152,7 @@
   {
     "path": "api/SuhGeneral/service/shStorage",
     "titleWords": "shStorage",
-    "keywords": "an api browser by factory for html if interface localstorage module objects partials provides service shstorage suhgeneral supported the",
+    "keywords": "an api browser by factory for html if interface localstorage module objects partials persistence provides service shstorage suhgeneral supported the",
     "members": "_gettype get getfloat getinteger getjson isenabled remove store"
   },
   {
@@ -114,27 +168,33 @@
     "members": ""
   },
   {
-    "path": "api/SuhGeneral/service/shUrlRules",
-    "titleWords": "shUrlRules",
-    "keywords": "api factory generate html module partials rules service shurlrules suhgeneral to url",
-    "members": ""
-  },
-  {
     "path": "api/SuhGeneral/service/shUtil",
     "titleWords": "shUtil",
     "keywords": "api containing factory functions html module of partials service set shutil suhgeneral utility",
     "members": "extend proxy"
   },
   {
-    "path": "api/SuhGeneral/service/shValidator",
-    "titleWords": "shValidator",
-    "keywords": "an api before data factory html it module object partials sending server service shvalidator suhgeneral the to used validate",
+    "path": "api/SuhGeneral/directive",
+    "titleWords": "directive components in SuhGeneral",
+    "keywords": "api componentgroup components directive html in module partials suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/provider",
+    "titleWords": "provider components in SuhGeneral",
+    "keywords": "api componentgroup components html in module partials provider suhgeneral",
     "members": ""
   },
   {
     "path": "api/SuhGeneral/service",
     "titleWords": "service components in SuhGeneral",
     "keywords": "api componentgroup components html in module partials service suhgeneral",
+    "members": ""
+  },
+  {
+    "path": "api/SuhGeneral/interface",
+    "titleWords": "interface components in SuhGeneral",
+    "keywords": "api componentgroup components html in interface module partials suhgeneral",
     "members": ""
   },
   {

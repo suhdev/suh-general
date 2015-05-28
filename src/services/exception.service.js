@@ -56,4 +56,4 @@ angular.module('SuhGeneral')
 		return function(c,d){
 			return new _ge(c,d);
 		};
-	}])
+	}]);

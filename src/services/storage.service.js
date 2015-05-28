@@ -2,6 +2,7 @@
  * @ngdoc service
  * @name shStorage
  * @module SuhGeneral
+ * @implements Persistence
  * @description provides an interface for localStorage objects if supported by the browser.
  */
 angular.module('SuhGeneral')
@@ -33,7 +34,7 @@ angular.module('SuhGeneral')
 								localStorage.setItem(k,(angular.isObject(key[k])?JSON.stringify(key[k]):key[k]));
 							}
 						}else{
-							localStorage.setItem(key,angular.isObject(key[k])?JSON.stringify(data):key[k]);
+							localStorage.setItem(key,JSON.stringify(data));
 						}
 						return true;
 					}
@@ -69,9 +70,10 @@ angular.module('SuhGeneral')
 					if (enabled){
 						var item = localStorage.getItem(key);
 						if (item){
-							JSON.parse(item)
+							return JSON.parse(item);
 						}
 					}
+					return undefined;
 				},
 				/**
 				 * @ngdoc method
@@ -130,4 +132,4 @@ angular.module('SuhGeneral')
 
 		return o;
 		
-	}])
+	}]);

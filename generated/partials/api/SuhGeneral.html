@@ -27,7 +27,62 @@ through services, controllers, and directives.</p>
 <div class="component-breakdown">
   <h2>Module Components</h2>
   
+    <h3 class="component-heading" id="directive">Directive</h3>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/directive/shLocalize">shLocalize</a>
+        </dt>
+        <dd>
+          <p>A directive to bind translations to the DOM. This directive will replace 
+the HTML content of the element with the translation key provided</p>
+
+        </dd>
+    </dl>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/directive/shlocalizeAttr">shlocalizeAttr</a>
+        </dt>
+        <dd>
+          <p>Binds translation data to an attribute rather than the HTML content. </p>
+
+        </dd>
+    </dl>
+    
+  
+    <h3 class="component-heading" id="provider">Provider</h3>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/provider/shUrlRulesProvider">shUrlRulesProvider</a>
+        </dt>
+        <dd>
+          
+        </dd>
+    </dl>
+    
+  
     <h3 class="component-heading" id="service">Service</h3>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/service/shUrlRules">shUrlRules</a>
+        </dt>
+        <dd>
+          
+        </dd>
+    </dl>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/service/shBlockNavigation">shBlockNavigation</a>
+        </dt>
+        <dd>
+          <p>A service to stop users from navigation away from the page.</p>
+
+        </dd>
+    </dl>
     
     <dl class="uk-description-list-horizontal">
         <dt>
@@ -61,10 +116,11 @@ through services, controllers, and directives.</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shEventGenerator">shEventGenerator</a>
+          <a href="api/SuhGeneral/service/shEventEmitter">shEventEmitter</a>
         </dt>
         <dd>
-          <p>Provides a basic implementation of an event generator mechanism</p>
+          <p>A service exposing the <a href="api/SuhGeneral/type/EventEmitter">EventEmitter</a> constructor to be inherited by
+other classes.</p>
 
         </dd>
     </dl>
@@ -134,7 +190,27 @@ through services, controllers, and directives.</p>
           <a href="api/SuhGeneral/service/shIdentityGenerator">shIdentityGenerator</a>
         </dt>
         <dd>
-          <p>A service to generate random unique identifiers</p>
+          <p>A service to generate pseudo-random identifiers</p>
+
+        </dd>
+    </dl>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/service/shLocalizer">shLocalizer</a>
+        </dt>
+        <dd>
+          <p>A module to handle localization of an Angular app by providing a way to manage translation files.</p>
+
+        </dd>
+    </dl>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/service/shLOCALE">shLOCALE</a>
+        </dt>
+        <dd>
+          <p>A string representing the current locale of the application.</p>
 
         </dd>
     </dl>
@@ -192,16 +268,6 @@ in cases of successful calls</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shUrlRules">shUrlRules</a>
-        </dt>
-        <dd>
-          <p>A service to generate URL rules</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
           <a href="api/SuhGeneral/service/shUtil">shUtil</a>
         </dt>
         <dd>
@@ -210,12 +276,15 @@ in cases of successful calls</p>
         </dd>
     </dl>
     
+  
+    <h3 class="component-heading" id="interface">Interface</h3>
+    
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shValidator">shValidator</a>
+          <a href="api/SuhGeneral/interface/Persistence">Persistence</a>
         </dt>
         <dd>
-          <p>an object used to validate data before sending it to the server.</p>
+          <p>A basic storage interface that must be implemented by any persistence storage service</p>
 
         </dd>
     </dl>
@@ -229,6 +298,17 @@ in cases of successful calls</p>
         </dt>
         <dd>
           <p>Creates a new cache object. The new cache will also automatically restore any previous states from the persistance storage</p>
+
+        </dd>
+    </dl>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/type/EventEmitter">EventEmitter</a>
+        </dt>
+        <dd>
+          <p>An abstract class providing basic implementation for event emitters. 
+This class is intended to be inherited from by other classes.</p>
 
         </dd>
     </dl>
@@ -255,10 +335,7 @@ in cases of successful calls</p>
 
 </div>
 
-<div class="ngdocs-object-todos">
 
-</ul>
-</div>
 <a href='https://github.com/angular/angular.js/edit//../suh-general.js?message=docs(SuhGeneral)%3A%20describe%20your%20change...#L2' class='improve-docs uk-badge-primary uk-badge'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
 <a href='https://github.com///tree//../suh-general.js#L2' class='view-source pull-right uk-badge uk-badge-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source

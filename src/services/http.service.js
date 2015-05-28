@@ -11,7 +11,7 @@ angular.module('SuhGeneral')
 		function ($Q,_RQ,_HQ,_UTIL) {
 		var _R = function(model,fields){
 			this.model = model;
-			this.resource = _UTIL.string.toCamelCase(model)
+			this.resource = _UTIL.capitalize(_UTIL.toCamelCase(model));
 			this._fields = fields;
 			this._url = '/'+model+'/:id';
 			this._extUrl = '/'+model+'-:p-:c/:orderBy-:direction/:method/:id';
@@ -53,7 +53,7 @@ angular.module('SuhGeneral')
 						.replace(/\/$/,'');
 		};
 		c.fields = function(){
-			this._fields;
+			return this._fields;
 		};
 
 		c.createLocalObject = function(obj){
@@ -65,7 +65,7 @@ angular.module('SuhGeneral')
 				key = this._fields[i];
 				elems = key.split(':');
 				if (elems.length < 3){
-					if (ob[elems[0]] == 0)
+					if (ob[elems[0]] === 0)
 						o[elems[0].toCamelCase()] = 0;
 					else 	
 						o[elems[0].toCamelCase()] = ob[elems[0]] || elems[1] || '';

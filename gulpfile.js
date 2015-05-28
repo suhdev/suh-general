@@ -1,6 +1,8 @@
 var gulp = require('gulp'),	
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
+	jshint = require('gulp-jshint'),
+	stylish = require('jshint-stylish'),
 	ngdocs = require('suh-dgeni-ngdocs'),
 	path = require('canonical-path'),
 	_ = require('lodash'),
@@ -49,10 +51,29 @@ function handleError(err){
 	this.emit('end');
 }
 
-gulp.task('concat-dev',function(){
+gulp.task('jshint',[],function(){
+	return gulp.src(PATHS.JS.SRC)
+		.pipe(jshint())
+		.pipe(jshint.reporter(stylish))
+});
+
+gulp.task('build',function(){
+	return gulp.src(PATHS.JS.SRC)
+		.pipe(rename(function(p){
+			p.basename += ".min";
+		}))
+		.pipe(uglify())
+		.pipe(gulp.dest('./build'));
+});
+
+gulp.task('concat-dev',['jshint'],function(){
 	return gulp.src(PATHS.JS.SRC)
 		.pipe(concat('suh-general.js'))
+		.pipe(gulp.dest('./'))
+		.pipe(concat('suh-general.min.js'))
+		.pipe(uglify())
 		.pipe(gulp.dest('./'));
+
 });
 
 gulp.task('concat-docs-lib',function(){

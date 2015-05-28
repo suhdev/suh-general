@@ -8,6 +8,96 @@
  * through services, controllers, and directives. 
  */
 angular.module('SuhGeneral',[]);
+/**
+ * @ngdoc directive
+ * @name shLocalize
+ * @module SuhGeneral
+ * @restrict A
+ * @description
+ * A directive to bind translations to the DOM. This directive will replace 
+ * the HTML content of the element with the translation key provided
+ *
+ * ```html
+ *
+ * <div sh-localize="phrases.welcome"></div>
+ *
+ * ```
+ */
+angular.module('SuhGeneral')
+	.directive('shLocalize', ['shLocalizer',function (_SL) {
+		return {
+			restrict: 'A',
+			scope:false,
+			link: function ($S, $E, $A) {
+				if (angular.isDefined($A.shLocalize)){
+					var o = _SL.get($A.shLocalize);
+					if (!o){
+						_SL.ready().then(
+							function(){
+								var p = _SL.get($A.shLocalize);
+								if (p){
+									$E.html(p);
+								}else {
+									$E.html($A.shLocalize);
+								}
+							});
+					}else {
+						$E.html(o);
+					}
+				}
+			}
+		};
+	}]);
+
+/**
+ * @ngdoc directive
+ * @name shlocalizeAttr
+ * @module SuhGeneral
+ * @restrict A
+ * @description
+ * Binds translation data to an attribute rather than the HTML content. 
+ *
+ * ```html
+ *
+ * <div sh-localize-attr-title="phrases.welcome"></div>
+ * will be
+ * <div title="welcome message" sh-localize-attr-title="phrases.welcome"></div>
+
+ * ```
+ *
+ */
+angular.module('SuhGeneral')
+	.directive('shLocalizeAttr', ['shLocalize',function (_SL) {
+		return {
+			restrict: 'A',
+			scope: {},
+			compile: function compile($E, $A) {
+				var patt = /^shLocalizeAttr(.+)/,m,o;
+				angular.forEach($A.$attr,function(attr,key){
+					m = key.match(patt);
+					if (m && m.length > 1){
+						o = _SL.get($A[key]);
+						if (!o){
+							_SL.ready()
+							   .then(function(){
+						   		var p = _SL.get($A[key]);
+						   		if(p){
+								   	$E.attr(m[1].toLowerCase(),p);
+						   		}else{
+						   			$E.attr($A[key]);
+						   		}
+						   	});
+						} else {
+							$E.attr(m[1].toLowerCase(),o);
+						}
+					}
+				});
+			},
+			link: function postLink($S, $E, $A) {
+				console.log($A);
+			}
+		};
+	}]);
 angular.module('SuhGeneral')
 	.provider('shApplicationData', [function () {
 		var data = {},
@@ -49,139 +139,255 @@ angular.module('SuhGeneral')
 		}];
 	}]);
 /**
+ * @ngdoc provider
+ * @name shUrlRulesProvider
+ * @module SuhGeneral
+ * @description
+ * 
+ *
+ *
+ */
+angular.provider('shUrlRules', [function () {
+	var rules = [{
+		rule:/\/(experience|guide|user)-[a-z\-0-9]+-([0-9]+)/,
+		pieces:['object','id','mode:view']
+	},{
+		rule:/\/me/,
+		pieces:['object:user','id:-1','mode:edit']
+	},{
+		rule:/\/(experiencebox|guidebox)\/([0-9]+)/,
+		pieces:['object','id']
+	},
+	{
+		rule:/\/(guide|experience)\/(edit|preview|pdf|embed|box)\/([0-9]*)/,
+		pieces:['object','mode','id']
+	},{
+		rule:/\/(guide|experience)\/(create)/,
+		pieces:['object','mode']
+	}];
+
+	this.setRules = function(r){
+		rules = r;
+	};
+	
+	/**
+	 * @ngdoc service
+	 * @name shUrlRules
+	 * @module SuhGeneral
+	 * @description
+	 *
+	 */
+
+	this.$get = [function() {
+		return {
+			rules:function(){
+				return rules;
+			}
+		};
+	}];
+}]);
+/**
+ * @ngdoc service
+ * @name shBlockNavigation
+ * @module SuhGeneral
+ * @description
+ * A service to stop users from navigation away from the page. 
+ */
+angular.module('SuhGeneral')
+	.factory('shBlockNavigation', [function () {
+		var requestBlock = false,
+			block = function block(text){
+				window.onbeforeunload = function() {
+				  return text || 'Are you sure you want to leave? you may lose any unsaved work';
+				};
+			},
+			unblock = function unblock(){
+				window.onbeforeunload = undefined;
+			};
+		return {
+			/**
+			 * @ngdoc method
+			 * @name shBlockNavigation#block
+			 * @module SuhGeneral
+			 * @param {string} the text to show to the user. 
+			 * @description
+			 * Stop the user from navgiating away from the page
+			 */
+
+			block:block,
+			/**
+			 * @ngdoc method
+			 * @name shBlockNavigation#unblock
+			 * @module SuhGeneral
+			 * @description
+			 * Allow user to navigate away from the page, removing any block callbacks. 
+			 */
+			unblock:unblock
+		};
+	}]);
+
+
+/**
  * @ngdoc service
  * @name shCache 
  * @module SuhGeneral
- * @param {string} key application cache key
+ * @param {string} key application cache key, this key is used to persist the whole cache dictionary into the localStorage. 
  * @returns {SuhCacheType} an instance of the {@link SuhCacheType} class
  * @description
  * Provides an internal cache with persistance support (if the browser supports it)
  */
 angular.module('SuhGeneral') 
-	.factory('Cache', ['shEventGenerator','shStorage','shUtil',function (_EG,_GS,_UT) {
+	.factory('Cache', ['shEventEmitter','shStorage','shUtil',function (_EM,_GS,_UT) {
+		/**
+		 * @ngdoc interface
+		 * @name Persistence 
+		 * @module SuhGeneral
+		 * @description
+		 * A basic storage interface that must be implemented by any persistence storage service
+		 */
+
+		 /**
+		  * @ngdoc method
+		  * @name Persistence#store
+		  * @module SuhGeneral
+		  * @param {string|number} key the key to store the data under
+		  * @param {any} data the data to store 
+		  * @description
+		  * Persists data into the underlying persistence storage. 
+		  */
+
+		  /**
+		   * @ngdoc method
+		   * @name Persistence#get
+		   * @module SuhGeneral
+		   * @param {string|number} key data identification key 
+		   * @returns {Promise} resolved to the data or rejected with an error message. 
+		   * @description 
+		   * Returns the data under the provided key
+		   */
+
+
 		/**
 		 * @ngdoc type
 		 * @name SuhCacheType
 		 * @module SuhGeneral
 		 * @param {string} key the application key, this key is used to store items in the persistence storage.
+		 * @param {Persistence} the persistence storage to use. 
+		 * @property {boolean} enabled true if the cache is enabled, false otherwise.
 		 * @property {object} data the cache storage object
-		 * @property {bool} enabled whether the cache object is enabled or disabled
 		 * @description
 		 * Creates a new cache object. The new cache will also automatically restore any previous states from the persistance storage
 		 */
-		var _gc = function(key){
+		var _gc = function(key,storage){
 			this.data = {};
 			this.key = key;
 			this.enabled = true;
+			this.persistence = storage || _GS;
 			if (_GS.isEnabled()){
 				this.restore();
 			}
 		};
-		_UT.extend(_gc,_EG,
-		{
-			/**
-			 * @ngdoc method 
-			 * @name SuhCacheType#store
-			 * @module SuhGeneral
-			 * @param {string|object|Array<object>} key the item key. 
-			 * @param {string|integer|float|bool|Array|object} [value] the item value.
-			 * @description
-			 * Stores an element in the cache. <b>Note:</b> Any item with the same key will be overriden
-			 */
-			store:function(o,value){
-				var self = this;
-				if (this.enabled){
-					if (angular.isArray(o)){
-						angular.forEach(o,function(v,k){
-							self.data[v.key] = self.data[v.value];
-						});
-						return;
-					}else if (angular.isObject(o)){
-						self.data[o.key] = o.value;
-					}else{
-						self.data[o] = value;
-					}
-				}
-			},
-
-			/**
-			 * @ngdoc method
-			 * @name SuhCacheType#disable
-			 * @module SuhGeneral
-			 * @description
-			 * Disables the cache object such that invoking store, get, persist will result nothing.
-			 * This is mainly useful upon restoring the previous object state from cache
-			 */
-			disable:function(){
-				this.enabled = false;
-			},
-
-			/**
-			 * @ngdoc method
-			 * @name SuhCacheType#enable
-			 * @module SuhGeneral
-			 * @description
-			 * Enables the cache object
-			 */
-			enable:function(){
-				this.enabled = true;
-			},
-
-			/**
-			 * @ngdoc method
-			 * @name SuhCacheType#persist
-			 * @module SuhGeneral
-			 * @description
-			 * Stores the current state of the cache into the loaclStorage (persistance)
-			 */
-			persist:function(){
-				if (this.enabled){
-					_GS.store(this.key,this.data);
-				}
-			},
-
-			/**
-			 * @ngdoc method
-			 * @name SuhCacheType#restore
-			 * @module SuhGeneral
-			 * @description
-			 * Restores the most recent cache state from the localStorage (persistance) 
-			 */
-			restore:function(){
-				this.enabled = false;
-				var temp = _GS.getJSON(this.key);
-				if (temp === null ||
-					typeof temp === 'undefined' ||
-					!angular.isObject(temp)){
-					this.data = {};
+		Util.inherits(_gc,_EG);
+		var p = _gc.prototype; 
+		/**
+		 * @ngdoc method 
+		 * @name SuhCacheType#store
+		 * @module SuhGeneral
+		 * @param {string|object|Array<object>} key the item key. 
+		 * @param {string|integer|float|bool|Array|object} [value] the item value.
+		 * @description
+		 * Stores an element in the cache. <b>Note:</b> Any item with the same key will be overriden
+		 */
+		p.store = function(o,value){
+			var self = this;
+			if (this.enabled){
+				if (angular.isArray(o)){
+					angular.forEach(o,function(v,k){
+						self.data[v.key] = self.data[v.value];
+					});
+					return;
+				}else if (angular.isObject(o)){
+					self.data[o.key] = o.value;
 				}else{
-					this.data = temp;
+					self.data[o] = value;
 				}
-				this.enabled = true;
-			},
+			}
+		};
+		/**
+		 * @ngdoc method
+		 * @name SuhCacheType#disable
+		 * @module SuhGeneral
+		 * @description
+		 * Disables the cache object such that invoking store, get, persist will result nothing.
+		 * This is mainly useful upon restoring the previous object state from cache
+		 */
+		p.disable = function(){
+			this.enabled = false;
+		};
+		/**
+		 * @ngdoc method
+		 * @name SuhCacheType#enable
+		 * @module SuhGeneral
+		 * @description
+		 * Enables the cache object
+		 */
+		p.enable = function(){
+			this.enabled = true;
+		};
 
-			/**
-			 * @ngdoc method
-			 * @name SuhCacheType#get
-			 * @module SuhGeneral
-			 * @param {string} key the item key to retrieve from the cache
-			 * @returns {any|null} returns the requested item or null if not available 
-			 * @description
-			 * Returns an item from the cache given its key
-			 */
-			get:function(key){
-				if (this.enabled){
-					var t = this.data[key];
-					if (typeof t !== 'undefined' &&
-						t !== null){
-						return this.data[key];
-					}
-					return null;
+		/**
+		 * @ngdoc method
+		 * @name SuhCacheType#persist
+		 * @module SuhGeneral
+		 * @description
+		 * Stores the current state of the cache into the loaclStorage (persistance)
+		 */
+		p.persist = function(){
+			if (this.enabled){
+				_GS.store(this.key,this.data);
+			}
+		};
+
+		/**
+		 * @ngdoc method
+		 * @name SuhCacheType#restore
+		 * @module SuhGeneral
+		 * @description
+		 * Restores the most recent cache state from the localStorage (persistance) 
+		 */
+		p.restore = function(){
+			this.enabled = false;
+			var temp = _GS.getJSON(this.key);
+			if (temp === null ||
+				typeof temp === 'undefined' ||
+				!angular.isObject(temp)){
+				this.data = {};
+			}else{
+				this.data = temp;
+			}
+			this.enabled = true;
+		};
+
+		/**
+		 * @ngdoc method
+		 * @name SuhCacheType#get
+		 * @module SuhGeneral
+		 * @param {string} key the item key to retrieve from the cache
+		 * @returns {any|null} returns the requested item or null if not available 
+		 * @description
+		 * Returns an item from the cache given its key
+		 */
+		p.get = function(key){
+			if (this.enabled){
+				var t = this.data[key];
+				if (typeof t !== 'undefined' &&
+					t !== null){
+					return this.data[key];
 				}
-			},
-		}); 
+				return null;
+			}
+		}; 
 
-		
 		return function(key){
 			return new _gc(key);
 		};
@@ -240,52 +446,128 @@ angular.module('SuhGeneral')
 					code:0x11111,
 					description:'Network error'
 				}]);
-			}
+			};
 		};
 	}]);
 /**
  * @ngdoc service
- * @name shEventGenerator
+ * @name shEventEmitter
  * @module SuhGeneral
- * @requires shUtil
  * @description
- * Provides a basic implementation of an event generator mechanism
- * @todo {urgent} complete documentation.
+ * A service exposing the {@link EventEmitter EventEmitter} constructor to be inherited by
+ * other classes. 
+ * @returns {constructor} the {@link EventEmitter EventEmitter} constructor
  */
- angular.module('SuhGeneral')
- 	.factory('shEventGenerator', ['shUtil',function (_UT) {
- 		
- 		var _eg = function(){
- 			this._listeners = {};
- 		};
 
- 		_eg.prototype = {
- 			
- 			_register:function(evName){
- 				this._listeners[evName] = this.listeners[evName] || [];
- 			},
- 			_unRegister:function(evName){
- 				delete this._listeners[evName];
- 			},
- 			trigger:function(ev,value){
- 				if (this.listeners[ev]){
- 					angular.forEach(this.listeners[ev],function(fn){
- 						fn(value);
- 					});
- 				}
- 			},
- 			on:function(eName,eFn,ctx,args){
- 				if (!this.listeners[eName]){
- 					throw new Error('Event: No such event')
- 				}
- 				this.listeners[eName].push(_UT.proxy(eFn,ctx,args));
- 			},
- 		};
- 	
- 		return {
- 			Generator:_eg
- 		};
- 	}]);
+angular.module('SuhGeneral')
+	.factory('shEventEmitter', [function () {
+		/**
+		 * @ngdoc type 
+		 * @abstract
+		 * @name EventEmitter
+		 * @module SuhGeneral
+		 * @param {Array<string>} events the supported events 
+		 * @description
+		 * An abstract class providing basic implementation for event emitters. 
+		 * This class is intended to be inherited from by other classes. 
+		 */
+		function Emitter(events){
+			/**
+			 * @ngdoc property 
+			 * @name EventEmitter#events
+			 * @module SuhGeneral
+			 * @propertyOf EventEmitter
+			 * @description 
+			 * Holds the objects supported events. 
+			 */
+			this.events = events || [];
+
+			/**
+			 * @ngdoc property
+			 * @name EventEmitter#listeners
+			 * @module SuhGeneral
+			 * @type {object}
+			 * @propertyOf EventEmitter
+			 * @description
+			 * An object literal in which the keys are the events names, and 
+			 * the values are arrays of listeners. 
+			 */
+			this.listeners = {};
+		}
+
+		Emitter.prototype = {
+			/**
+			 * @ngdoc method
+			 * @name EventEmitter#addEventListener
+			 * @module SuhGeneral
+			 * @param {string} evtName the event name (or type)
+			 * @param {function} listener the listener function to call when the event is triggered. 
+			 * @param {object} [ctx] the object on which the listener should be called. 
+			 * @description 
+			 * Add an event listener to a given event type. 
+			 */
+			addEventListener:function(evtName,listener,ctx){
+				if (this.events.indexOf(evtName) === -1){
+					throw new Error('The object does not support the event "'+evt+'".');
+				}
+				this.listeners = this.listeners || {};
+				this.listeners[evtName] = this.listeners[evtName] || [];
+				this.listeners[evtName].push(ctx?angular.bind(ctx,listener):listener);
+			},
+
+			/**
+			 * @ngdoc method
+			 * @name EventEmitter#removeEventListener
+			 * @module SuhGeneral
+			 * @param {string} evtName the event name (or type)
+			 * @param {function} listener the listener function to to remove. 
+			 * @description 
+			 * Removes an event listener from a given event.  
+			 */
+			removeEventListener:function(evtName,listener){
+				if (!this.listeners[evtName]){
+					throw new Error("Event '"+evtName+"' is not registered.");
+				}
+				var i = this.listeners[evtName].indexOf(listener);
+				if (i !== -1){
+					this.listeners.splice(i,1);
+				}
+			},
+
+			/**
+			 * @ngdoc method
+			 * @name EventEmitter#trigger
+			 * @module SuhGeneral
+			 * @param {string} evtName the event name (or type) of the triggered event
+			 * @param {object} e the event object to pass to the listeners
+			 * @description
+			 * Triggers a given event by calling all event listeners. 
+			 */
+			trigger:function(evtName,e){
+				if (this.listeners[evtName]){
+					var list = this.listeners[evtName],i,l;
+					for(i=0,l=list.length;i<l;i++){
+						list[i](e);
+					}
+				}
+			},
+			/**
+			 * @ngdoc method
+			 * @name EventEmitter#on 
+			 * @module SuhGeneral 
+			 * @param {string} evtName the event name or type to listen to.
+			 * @param {function} fn the function to call. 
+			 * @param {object} [ctx] the context on which the function should be called. 
+			 * @description 
+			 * Registers a listener 
+			 */ 
+			on:function(evt,fn,ctx){
+				return this.addEventListener(evt,fn,ctx);
+			}
+		};
+	
+		return Emitter;
+	}]);
 /**
  * @ngdoc service
  * @name shEventsManager
@@ -297,7 +579,7 @@ angular.module('SuhGeneral')
  * @todo {urgent} complete documentation. 
  */
 angular.module("SuhGeneral")
-	.factory('shEventsManager', ['$rootScope','shIdentityGenerator','shException',function ($RT,_GIG,_GE) {
+	.factory('shEventsManager', [function () {
 		var t = function(){
 			this._e = {};
 		};
@@ -314,11 +596,13 @@ angular.module("SuhGeneral")
 			},
 			removeListener:function(l,eN){
 				if (l.listenEvents){
+					var i;
 					if (eN && this._e[eN]){
-						var i =this._e[eN].indexOf(l);
+						i =this._e[eN].indexOf(l);
 						this._e[eN].splice(i,1);
 					}else{
-						var events = l.listenEvents(),i=0,last = events.length,j;
+						var events = l.listenEvents(),last = events.length,j;
+						i = 0;
 						for(;i<last;i++){
 							if (this._e[events[i]] && 
 							(j = this._e[events[i]].indexOf(l)) !== -1){
@@ -335,7 +619,7 @@ angular.module("SuhGeneral")
 					var i=0,l=this._e[eN].length || 0;
 					for(;i<l;i++){
 						if (this._e[eN][i]){
-							this._e[eN][i].fire(eN,eD)
+							this._e[eN][i].fire(eN,eD);
 						}else{
 							this._e[eN].splice(i,1);
 							i--;
@@ -345,7 +629,7 @@ angular.module("SuhGeneral")
 				}
 			}
 		};	
-		return new t;
+		return new t();
 	}]);
 /**
  * @ngdoc service
@@ -405,7 +689,7 @@ angular.module('SuhGeneral')
 		return function(c,d){
 			return new _ge(c,d);
 		};
-	}])
+	}]);
 /**
  * @ngdoc service
  * @name shHttpModel
@@ -415,13 +699,13 @@ angular.module('SuhGeneral')
  * @todo {urgent} add documentation.
  */
 angular.module('SuhGeneral')
-	.factory('shHttpModel', ['shHttp',function (_H) {
+	.factory('shHttpModel', ['shHttp','shUtil',function (_H,_UT) {
 		return function(model){
 			var _sj = function(){
 				_H.call(this,model);
 			};
-			inherits(_sj,_H);
-			return new _sj;
+			_UT.inherits(_sj,_H);
+			return new _sj();
 		};
 	}]);
 /**
@@ -437,7 +721,7 @@ angular.module('SuhGeneral')
 		function ($Q,_RQ,_HQ,_UTIL) {
 		var _R = function(model,fields){
 			this.model = model;
-			this.resource = _UTIL.string.toCamelCase(model)
+			this.resource = _UTIL.capitalize(_UTIL.toCamelCase(model));
 			this._fields = fields;
 			this._url = '/'+model+'/:id';
 			this._extUrl = '/'+model+'-:p-:c/:orderBy-:direction/:method/:id';
@@ -479,7 +763,7 @@ angular.module('SuhGeneral')
 						.replace(/\/$/,'');
 		};
 		c.fields = function(){
-			this._fields;
+			return this._fields;
 		};
 
 		c.createLocalObject = function(obj){
@@ -491,7 +775,7 @@ angular.module('SuhGeneral')
 				key = this._fields[i];
 				elems = key.split(':');
 				if (elems.length < 3){
-					if (ob[elems[0]] == 0)
+					if (ob[elems[0]] === 0)
 						o[elems[0].toCamelCase()] = 0;
 					else 	
 						o[elems[0].toCamelCase()] = ob[elems[0]] || elems[1] || '';
@@ -749,8 +1033,8 @@ angular.module('SuhGeneral')
 		
 		return function(model){
 			return new _r(model);
-		}
-	}])
+		};
+	}]);
 /**
  * @ngdoc service
  * @name shHttpQuery
@@ -843,8 +1127,8 @@ angular.module('SuhGeneral')
 		
 		return function(model){
 			return new _r(model);
-		}
-	}])
+		};
+	}]);
 /**
  * @ngdoc service
  * @name shIdentityGenerator
@@ -858,6 +1142,120 @@ angular.module('SuhGeneral')
 		return function(){
 			return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);});
 		};
+	}]);
+/** 
+ * @ngdoc service
+ * @name shLocalizer
+ * @module SuhGeneral
+ * @description
+ * A module to handle localization of an Angular app by providing a way to manage translation files. 
+ */ 
+
+ /** 
+  * @ngdoc service
+  * @name shLOCALE
+  * @module SuhGeneral
+  * @description 
+  * A string representing the current locale of the application. 
+  */ 
+angular.module('SuhGeneral')
+	.factory('shLocalizer', ['$http','$q','shLOCALE','shUtil',function ($H,$Q, _SL,_UT) {
+		var dict = {},
+			__o,
+			def = $Q.defer(),
+			source = '',
+			locale = _SL,
+			loaded = false,
+			onLoad = function onLoad(resp){
+				dict = resp;
+				loaded = true;
+				def.resolve(); 
+			},
+			onError = function onError(err){
+				def.resolve('An error has occured'); 
+			};
+
+		__o = {
+			/**
+			 * @ngdoc method
+			 * @name shLocalizer#load
+			 * @module SuhGeneral
+			 * @param {string|object} source the translation source (valid json)
+			 * @description
+			 * Loads either an object literal as a translation source, or a URL to get the 
+			 * translation data from (must return a valid JSON data)
+			 */
+			load:function(source){
+				if (angular.isString(srouce)){
+					$H.get(source)
+						.success(onLoad)
+						.error(onError); 
+				}else if (angular.isObject(source)){
+					onLoad(source);
+				}
+			},
+			/**
+			 * @ngdoc method 
+			 * @name shLocalizer#ready
+			 * @module SuhGeneral
+			 * @returns {Promise} 
+			 * @description
+			 * Returns a promise that will be resolved when the translation source has been
+			 * loaded. 
+			 */
+			ready:function(){
+				return def.promise;
+			},
+			/**
+			 * @ngdoc method
+			 * @name shLocalizer#isLoaded
+			 * @module SuhGeneral
+			 * @returns {boolean}
+			 * @description
+			 * Returns either true if the source file has been loaded, false otherwise. 
+			 */
+			isLoaded:function(){
+				return loaded;
+			},
+			/**
+			 * @ngdoc method 
+			 * @name shLocalizer#get
+			 * @module SuhGeneral
+			 * @param {string} key a string path i.e. 'name', 'name.first', 'user.name.lastname' 
+			 * @returns {string|undefined} 
+			 * @description
+			 * Returns a formatted string representing the translation, any string path will be parsed 
+			 * and the value under the specific path will be retrieved 
+			 * ```javascript 
+			 * var obj = {
+			 *	name:{
+			 *		first:'John',
+			 *		last: 'Doe'
+			 * 		 }
+			 * 	}
+			 * // a string path to get the first name 'name.first'; 
+			 * ```
+			 *
+			 */
+			get:function(key,values){
+				var a = _UT.getDataAt(dict,key);
+				if (angular.isDefined(a)){
+					return __o.format(a,values);
+				}
+				return undefined;
+			},
+			format:function(item,obj){
+				if (angular.isDefined(obj)){
+					for(var key in obj){
+						item = item.replace(new RegExp(":"+key,"ig"),obj[key]);
+					}
+				}
+				return item;
+			}
+
+		}; 
+	
+		return __o;
 	}]);
 /** 
  * @ngdoc service
@@ -927,8 +1325,8 @@ angular.module('SuhGeneral')
 			}
 		};
 	
-		return new _gll;
-	}])
+		return new _gll();
+	}]);
 
 /**
  * @ngdoc service
@@ -986,12 +1384,13 @@ angular.module('SuhGeneral')
 			}
 		};
 	
-		return new _gsdr;
+		return new _gsdr();
 	}]);
 /**
  * @ngdoc service
  * @name shStorage
  * @module SuhGeneral
+ * @implements Persistence
  * @description provides an interface for localStorage objects if supported by the browser.
  */
 angular.module('SuhGeneral')
@@ -1023,7 +1422,7 @@ angular.module('SuhGeneral')
 								localStorage.setItem(k,(angular.isObject(key[k])?JSON.stringify(key[k]):key[k]));
 							}
 						}else{
-							localStorage.setItem(key,angular.isObject(key[k])?JSON.stringify(data):key[k]);
+							localStorage.setItem(key,JSON.stringify(data));
 						}
 						return true;
 					}
@@ -1059,9 +1458,10 @@ angular.module('SuhGeneral')
 					if (enabled){
 						var item = localStorage.getItem(key);
 						if (item){
-							JSON.parse(item)
+							return JSON.parse(item);
 						}
 					}
+					return undefined;
 				},
 				/**
 				 * @ngdoc method
@@ -1120,7 +1520,7 @@ angular.module('SuhGeneral')
 
 		return o;
 		
-	}])
+	}]);
 /**
  * @ngdoc service
  * @name shSuccess
@@ -1138,7 +1538,7 @@ angular.module('SuhGeneral')
 					return d.resolve(data.result);
 				else
 					return d.reject(data.reasons);
-			}
+			};
 		};
 	}]);
 /**
@@ -1185,38 +1585,6 @@ angular.module('SuhGeneral')
 	}]);
 /**
  * @ngdoc service
- * @name shUrlRules
- * @module SuhGeneral
- * @description
- * A service to generate URL rules
- */ 
-angular.module('SuhGeneral')
-	.factory('shUrlRules', [function () {
-		var rules = [{
-			rule:/\/(experience|guide|user)-[a-z\-0-9]+-([0-9]+)/,
-			pieces:['object','id','mode:view']
-		},{
-			rule:/\/me/,
-			pieces:['object:user','id:-1','mode:edit']
-		},{
-			rule:/\/(experiencebox|guidebox)\/([0-9]+)/,
-			pieces:['object','id']
-		},
-		{
-			rule:/\/(guide|experience)\/(edit|preview|pdf|embed|box)\/([0-9]*)/,
-			pieces:['object','mode','id']
-		},{
-			rule:/\/(guide|experience)\/(create)/,
-			pieces:['object','mode']
-		}];
-		return {
-			rules:function(){
-				return rules;
-			}
-		};
-	}]);
-/**
- * @ngdoc service
  * @name shUtil
  * @module SuhGeneral
  * @description 
@@ -1224,7 +1592,7 @@ angular.module('SuhGeneral')
  */ 
 angular.module('SuhGeneral')
 	.factory('shUtil', [function () {
-		var o = {
+		var __O = {
 			/**
 			 * @ngdoc method
 			 * @name shUtil#extend
@@ -1235,12 +1603,28 @@ angular.module('SuhGeneral')
 			 * @description
 			 * Provides a prototypal inheritance 
 			 */
-			extend:function(cstr,pcstr,cproto){
+			extend:function extend(cstr,pcstr,cproto){
 				cstr.prototype = pcstr.prototype;
 				cstr.prototype.constructor = pcstr;
 				if (cproto){
 					cstr.prototype = angular.extend({},cstr.prototype,cproto);
 				}
+			},
+			/**
+			 * @ngdoc method
+			 * @name shUtil#extend
+			 * @module SuhGeneral
+			 * @param {Constructor} cstr the child constructor 
+			 * @param {Constructor} pstr the parent constructor 
+			 * @param {object} cproto the child prototype 
+			 * @description
+			 * Provides a real prototypal inheritance 
+			 */
+			inherits:function inherits(childCtor,parentCtor){
+				function tempCtor() { }
+				tempCtor.prototype = parentCtor.prototype;
+				childCtor.prototype = new tempCtor();
+				childCtor.prototype.constructor = childCtor.constructor;
 			},
 			/**
 			 * @ngdoc method
@@ -1251,16 +1635,14 @@ angular.module('SuhGeneral')
 			 * @description
 			 * Provides a proxy to call a method on a given context. Any parameters other
 			 * than the `fn` and `ctx` will be passed as the first parameters to `fn` function. 
-			 *
 			 */
-
 			proxy:function(fn,ctx){
 				var c = ctx || this,
 					args = (arguments.length > 2)?Array.prototype.slice.call(agruments,2):[];
 				return function(){
 					var a = Array.prototype.slice.call(arguments,0);
 					return fn.apply(c,[].concat(args,a));
-				}
+				};
 			},
 			format:function(ctx,repl,pref){
 				var itm,replacements; 
@@ -1282,91 +1664,128 @@ angular.module('SuhGeneral')
 				}
 				return a;
 			},
-			string:{
-				toCamelCase:function(str){
-					var m = str.match(/[^\-\_\.]+/g);
-					if (m && m.length > 1){
-						return m[0].toLowerCase() + o.map(m.slice(1),function(e){
-							return e[0].toUpperCase() + e.slice(1);
-						}).join('');
+			extractField:function(a,f){
+				var t = angular.isArray(a)?a:this,
+				res = [],i=0,l=t.length,k=-1;
+				for(;i<l;i++){
+					k = __O.getDataAt(t[i],f); 
+					if (k){
+						res.push(k);
 					}
-					return m[0].toLowerCase();
-				},
-				capitalize:function(str){
-					if (!angular.isString(str)){
-						throw new Error('invalid parameter passed, expecting a string');
+			    }
+			    return res;
+			},
+			identify:function(k){
+				return k;
+			},
+			filter:function(arr,fn){
+				var key,f = __O.identity,res = [];
+				for(key in arr){
+					if (fn(arr[key],key,arr)){
+						res.push(arr[key]);
 					}
-					return (str.length>1)?(str[0].toUpperCase()+str.slice(1)):str.toUpperCase();
 				}
+				return res;
+			},
+			findIndexByField:function(a,f,v){
+				var t = angular.isArray(a)?a:this,
+					i = 0,l=t.length;
+				for(;i<l;i++){
+			        if (__O.getDataAt(t[i],f) == v)
+			            return i;
+				}
+				return -1;
+			},
+			existsByField:function(a,f,v){
+				for(var i =0,l=a.length;i<l;i++){
+			        if (__O.getDataAt(a[i],f) == v){
+			            return true;
+			        }
+				}
+				return false;
+			},
+			removeByField:function(a,f,v){
+				var temp,i=0,l=a.length;
+				for(;i<l;i++){
+			        if (__O.getDataAt(a[i],f) == v){
+			        	return a.splice(i,1)[0];
+			        }
+				}
+				return undefined;
+			},
+			removeAllByField:function(a,f,v){
+				var list = [],i=0,l=a.length;
+				for(;i<l;i++){
+			        if (__O.getDataAt(a[i],f) == v){
+			        	list.push(a.splice(i,1)[0]);
+			        	i--;
+			        	l--;
+			        }
+				}
+				return list;
+			},
+			findAllByField:function(a,f,v){
+				var t = angular.isArray(a)?a:this,
+					r = [],i=0,l=t.length;
+				for(;i<l;i++){
+			        if (__O.getDataAt(t[i],f) == v)
+			            r.push(t[i]);
+			    }
+			    return r;
+			},
+			findByField:function(ob,f,v){
+				var t = angular.isArray(ob)?ob:this; 
+				for(var i =0,l=t.length;i<l;i++){
+					if (__O.getDataAt(t[i],f) == v){
+			            return t[i];
+					}
+		    	}
+		    	return undefined;
+			},
+			getDataAt:function(ob,k){
+				var p = k.match(/[^\.]+/gi),t=angular.isString(ob)?this:ob,i=0,l=(p)?p.length:0;
+				for(i=0;i<l && t;i++){
+					t = t[p[i]];
+				}
+				return t; 
+			},
+			setDataAt:function(ob,k,v){
+				var p = k.match(/[^\.]+/gi),t=angular.isString(ob)?this:ob,i=0,l=(p)?p.length-1:0;
+				for(i=0;i<l;i++){
+					t = (t[p[i]] = t[p[i]] || {});
+				}
+				t[p[l]] = v;
+				return t; 
+			},
+			toSnakeCase:function(str){
+				var m = str.match(/[A-Z]?[a-z0-9]+(?=[A-Z])?/g),t=str,l=m?m.length:0,i=1;
+				if (l > 0){
+					t = m[0];
+					for(;i<l;i++){
+						t = t +'_'+m[i];
+					}
+					t = t.toLowerCase();
+				}
+			    return t;
+			},
+			toCamelCase:function(str){
+				var m = str.match(/[^\-\_\.]+/g);
+				if (m && m.length > 1){
+					return m[0].toLowerCase() + __O.map(m.slice(1),function(e){
+						return e[0].toUpperCase() + e.slice(1);
+					}).join('');
+				}
+				return m[0].toLowerCase();
+			},
+			capitalize:function(str){
+				if (!angular.isString(str)){
+					throw new Error('invalid parameter passed, expecting a string');
+				}
+				return (str.length>1)?(str[0].toUpperCase()+str.slice(1)):str.toUpperCase();
+			},
+			lowerize:function(str){
+				return str.charAt(0).toLowerCase()+str.slice(1);
 			}
 		};
-		return o;
-	}]);
-/**
- * @ngdoc service
- * @name  shValidator
- * @module SuhGeneral
- * @description an object used to validate data before sending it to the server. 
- */
-angular.module('SuhGeneral')
-	.factory('SuhGeneral.Validator', [function () {
-		
-		var _v = function(fields,rules,messages){
-			this._fields = fields;
-			this._rules = rules;
-			this._messages = messages;
-			this._errors = {};
-		};
-		_v.prototype = {
-			fails:function(){
-				var result = true;
-				for(var f in this._fields){
-					var rules = this._rules[f];
-					for(var r in rules){
-						result = result && this._parse()
-					}
-				}
-				return result;
-
-			},
-			error:function(f){
-				return this._errors.getAt(f);
-			},
-			rules:{
-				between:function(v,min,max){
-					return (v >= min) && (v <= max);
-				},
-				less:function(v,t){
-					return v < t;
-				},
-				greater:function(v,t){
-					return v > t;
-				},
-				not:function(v,tv){
-					return v != tv;
-				},
-				notnull:function(val){
-					return val !== null;
-				},
-				in:function(val,list){
-					var l = JSON.parse(list);
-					return l.indexOf(val) !== -1;
-				},
-				string:function(val){
-					return angular.isString(val);
-				}
-			},
-			_parse:function(f,v,r){
-				var rx = r.match(/[^\:]/gi);
-				if (rx !== null){
-					var rn = rx.shift();
-					this._errors[f] = this._errors[f] || {};
-					return this._errors[f][rn] = this.rules[rn].apply(this,[v].concat(rx));
-				}
-			},
-
-		};
-		return function(fields,rules,messages){
-			return new _v(fields,rules,messages);
-		};
+		return __O;
 	}]);

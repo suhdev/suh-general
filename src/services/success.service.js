@@ -15,6 +15,6 @@ angular.module('SuhGeneral')
 					return d.resolve(data.result);
 				else
 					return d.reject(data.reasons);
-			}
+			};
 		};
 	}]);

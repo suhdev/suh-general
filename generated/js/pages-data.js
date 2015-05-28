@@ -6,10 +6,40 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/SuhGeneral"
   },
+  "api/SuhGeneral/directive/shLocalize": {
+    "name": "shLocalize",
+    "area": "api",
+    "path": "api/SuhGeneral/directive/shLocalize"
+  },
+  "api/SuhGeneral/directive/shlocalizeAttr": {
+    "name": "shlocalizeAttr",
+    "area": "api",
+    "path": "api/SuhGeneral/directive/shlocalizeAttr"
+  },
+  "api/SuhGeneral/provider/shUrlRulesProvider": {
+    "name": "shUrlRulesProvider",
+    "area": "api",
+    "path": "api/SuhGeneral/provider/shUrlRulesProvider"
+  },
+  "api/SuhGeneral/service/shUrlRules": {
+    "name": "shUrlRules",
+    "area": "api",
+    "path": "api/SuhGeneral/service/shUrlRules"
+  },
+  "api/SuhGeneral/service/shBlockNavigation": {
+    "name": "shBlockNavigation",
+    "area": "api",
+    "path": "api/SuhGeneral/service/shBlockNavigation"
+  },
   "api/SuhGeneral/service/shCache": {
     "name": "shCache",
     "area": "api",
     "path": "api/SuhGeneral/service/shCache"
+  },
+  "api/SuhGeneral/interface/Persistence": {
+    "name": "Persistence",
+    "area": "api",
+    "path": "api/SuhGeneral/interface/Persistence"
   },
   "api/SuhGeneral/type/SuhCacheType": {
     "name": "SuhCacheType",
@@ -26,10 +56,15 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/SuhGeneral/service/shError"
   },
-  "api/SuhGeneral/service/shEventGenerator": {
-    "name": "shEventGenerator",
+  "api/SuhGeneral/service/shEventEmitter": {
+    "name": "shEventEmitter",
     "area": "api",
-    "path": "api/SuhGeneral/service/shEventGenerator"
+    "path": "api/SuhGeneral/service/shEventEmitter"
+  },
+  "api/SuhGeneral/type/EventEmitter": {
+    "name": "EventEmitter",
+    "area": "api",
+    "path": "api/SuhGeneral/type/EventEmitter"
   },
   "api/SuhGeneral/service/shEventsManager": {
     "name": "shEventsManager",
@@ -71,6 +106,16 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/SuhGeneral/service/shIdentityGenerator"
   },
+  "api/SuhGeneral/service/shLocalizer": {
+    "name": "shLocalizer",
+    "area": "api",
+    "path": "api/SuhGeneral/service/shLocalizer"
+  },
+  "api/SuhGeneral/service/shLOCALE": {
+    "name": "shLOCALE",
+    "area": "api",
+    "path": "api/SuhGeneral/service/shLOCALE"
+  },
   "api/SuhGeneral/service/shLocationListener": {
     "name": "shLocationListener",
     "area": "api",
@@ -96,29 +141,34 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/SuhGeneral/service/sHUrlInspector"
   },
-  "api/SuhGeneral/service/shUrlRules": {
-    "name": "shUrlRules",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shUrlRules"
-  },
   "api/SuhGeneral/service/shUtil": {
     "name": "shUtil",
     "area": "api",
     "path": "api/SuhGeneral/service/shUtil"
   },
-  "api/SuhGeneral/service/shValidator": {
-    "name": "shValidator",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shValidator"
-  },
   ".": {
     "name": "production",
     "path": "."
+  },
+  "api/SuhGeneral/directive": {
+    "name": "directive components in SuhGeneral",
+    "area": "api",
+    "path": "api/SuhGeneral/directive"
+  },
+  "api/SuhGeneral/provider": {
+    "name": "provider components in SuhGeneral",
+    "area": "api",
+    "path": "api/SuhGeneral/provider"
   },
   "api/SuhGeneral/service": {
     "name": "service components in SuhGeneral",
     "area": "api",
     "path": "api/SuhGeneral/service"
+  },
+  "api/SuhGeneral/interface": {
+    "name": "interface components in SuhGeneral",
+    "area": "api",
+    "path": "api/SuhGeneral/interface"
   },
   "api/SuhGeneral/type": {
     "name": "type components in SuhGeneral",
