@@ -30,8 +30,7 @@ var gulp = require('gulp'),
 			'./components/google-code-prettify/bin/prettify.min.js',
 			'./components/google-code-prettify/src/lang-css.js',
 			'./components/lunr.js/lunr.min.js',
-			'./components/marked/marked.min.js',
-			'./']
+			'./components/marked/marked.min.js']
 		}
 	},
 	options = {
@@ -66,8 +65,17 @@ gulp.task('build',function(){
 		.pipe(gulp.dest('./build'));
 });
 
-gulp.task('concat-dev',['jshint'],function(){
+gulp.task('concat-lib',function(){
+	return gulp.src(PATHS.JS.DOCS_LIB)
+			   .pipe(concat('lib.min.js'))
+			   .pipe(gulp.dest('./'));
+});
+
+gulp.task('concat-dev',['concat-lib','jshint'],function(){
 	return gulp.src(PATHS.JS.SRC)
+		.on('error',function(log){
+			console.log(log);
+		})
 		.pipe(concat('suh-general.js'))
 		.pipe(gulp.dest('./'))
 		.pipe(concat('suh-general.min.js'))

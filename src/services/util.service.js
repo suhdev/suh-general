@@ -143,8 +143,9 @@ angular.module('SuhGeneral')
 				var t = angular.isArray(a)?a:this,
 					r = [],i=0,l=t.length;
 				for(;i<l;i++){
-			        if (__O.getDataAt(t[i],f) == v)
+			        if (__O.getDataAt(t[i],f) == v){
 			            r.push(t[i]);
+			        }
 			    }
 			    return r;
 			},
@@ -200,6 +201,23 @@ angular.module('SuhGeneral')
 			},
 			lowerize:function(str){
 				return str.charAt(0).toLowerCase()+str.slice(1);
+			},
+			tokenReplace:function(text,repl,startTag,endTag){
+				if (!text){
+					return text;
+				}
+				var reserved = '('+['[',']','(',')','{','}','-','.','$'].join('|')+')';
+				var st = startTag || '\\$\\{',
+					et = endTag || '\\}';
+				st = st.replace(/^(\(|\)|\[|\]|\.|\$|\-|\{|\})$/g,function(e,m){
+					return '\\'+m;
+				});
+				et = et.replace(/^(\(|\)|\[|\]|\.|\$|\-|\{|\})$/g,function(e,m){
+					return '\\'+m;
+				});
+				return text.replace(new RegExp(st+'([\\S]+?)'+et,'g'),function(e,m){
+					return repl[m] || e;
+				});
 			}
 		};
 		return __O;

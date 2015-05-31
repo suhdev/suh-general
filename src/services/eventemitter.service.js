@@ -12,7 +12,6 @@ angular.module('SuhGeneral')
 	.factory('shEventEmitter', [function () {
 		/**
 		 * @ngdoc type 
-		 * @abstract
 		 * @name EventEmitter
 		 * @module SuhGeneral
 		 * @param {Array<string>} events the supported events 
@@ -25,7 +24,6 @@ angular.module('SuhGeneral')
 			 * @ngdoc property 
 			 * @name EventEmitter#events
 			 * @module SuhGeneral
-			 * @propertyOf EventEmitter
 			 * @description 
 			 * Holds the objects supported events. 
 			 */
@@ -36,7 +34,6 @@ angular.module('SuhGeneral')
 			 * @name EventEmitter#listeners
 			 * @module SuhGeneral
 			 * @type {object}
-			 * @propertyOf EventEmitter
 			 * @description
 			 * An object literal in which the keys are the events names, and 
 			 * the values are arrays of listeners. 
@@ -57,11 +54,13 @@ angular.module('SuhGeneral')
 			 */
 			addEventListener:function(evtName,listener,ctx){
 				if (this.events.indexOf(evtName) === -1){
-					throw new Error('The object does not support the event "'+evt+'".');
+					throw new Error('The object does not support the event "'+evtName+'".');
 				}
 				this.listeners = this.listeners || {};
 				this.listeners[evtName] = this.listeners[evtName] || [];
-				this.listeners[evtName].push(ctx?angular.bind(ctx,listener):listener);
+				var fn = ctx?angular.bind(ctx,listener):listener;
+				fn.fn = listener;
+				this.listeners[evtName].push(fn);
 			},
 
 			/**
@@ -77,9 +76,15 @@ angular.module('SuhGeneral')
 				if (!this.listeners[evtName]){
 					throw new Error("Event '"+evtName+"' is not registered.");
 				}
-				var i = this.listeners[evtName].indexOf(listener);
+				var i=0,list=this.listeners[evtName],l=list.length,idx =-1;
+				for(;i<l;i++){
+					if (list[i].fn === listener){
+						idx = i;
+						break;
+					}
+				}
 				if (i !== -1){
-					this.listeners.splice(i,1);
+					this.listeners[evtName].splice(i,1);
 				}
 			},
 

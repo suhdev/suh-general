@@ -212,5 +212,45 @@ describe('Util',function(){
 	});
 
 
+	it("using inherits should provide prototypal inheritance", function() {
+		var Parent = function(){
+			this.attribute = 'defined'; 
+		};
+		Parent.prototype = {
+			doIt:function(){
+
+			}
+		};
+		var Task = function(){
+			Parent.call(this,['TaskAdded']);
+		};
+		Util.inherits(Task,Parent); 
+		Task.prototype.go = function(){
+		};
+
+		var p = new Task();
+		expect(p.doIt).toBeDefined();
+	});
+
+	it("should replace tokens in a template", function() {
+		var temp = '${model}-${page}-${order}'; 
+		expect(Util.tokenReplace).toBeDefined();
+		expect(Util.tokenReplace(temp,{model:'suhail',page:'20',order:'231'})).toEqual('suhail-20-231');
+		expect(Util.tokenReplace(temp,{model:'suhail',page:'20'})).toEqual('suhail-20-${order}');
+	});
+
+	it("should replace tokens when provided with different start and end tags", function() {
+		var temp = '[model]-[page]-[order]'; 
+		expect(Util.tokenReplace).toBeDefined();
+		expect(Util.tokenReplace(temp,{model:'suhail',page:'20',order:'231'},'[',']')).toEqual('suhail-20-231');
+		temp = '<model>-<page>-<order>'; 
+		expect(Util.tokenReplace(temp,{model:'suhail',page:'20'},'<','>')).toEqual('suhail-20-<order>');
+	});
+
+	it("should return undefined if undefined is passed", function() {
+		expect(Util.tokenReplace(undefined,{model:'suhail',page:'20'},'<','>')).toBeUndefined();
+	});
+
+
 
 });

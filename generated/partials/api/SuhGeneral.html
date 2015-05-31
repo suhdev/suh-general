@@ -55,10 +55,11 @@ the HTML content of the element with the translation key provided</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/provider/shUrlRulesProvider">shUrlRulesProvider</a>
+          <a href="api/SuhGeneral/provider/shLocalizerProvider">shLocalizerProvider</a>
         </dt>
         <dd>
-          
+          <p>A provider to provide localization for angular apps.</p>
+
         </dd>
     </dl>
     
@@ -67,10 +68,21 @@ the HTML content of the element with the translation key provided</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shUrlRules">shUrlRules</a>
+          <a href="api/SuhGeneral/service/shLocalizer">shLocalizer</a>
         </dt>
         <dd>
-          
+          <p>A module to handle localization of an Angular app by providing a way to manage translation files.</p>
+
+        </dd>
+    </dl>
+    
+    <dl class="uk-description-list-horizontal">
+        <dt>
+          <a href="api/SuhGeneral/service/shLOCALE">shLOCALE</a>
+        </dt>
+        <dd>
+          <p>A string representing the current locale of the application.</p>
+
         </dd>
     </dl>
     
@@ -96,20 +108,21 @@ the HTML content of the element with the translation key provided</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shDeferredRequest">shDeferredRequest</a>
+          <a href="api/SuhGeneral/service/shDataTransformer">shDataTransformer</a>
         </dt>
         <dd>
-          <p>Provides a unified method to handle AJAX requests</p>
+          <p>A service that provide a simple data transformer 
+that allows for chaining transformations.</p>
 
         </dd>
     </dl>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shError">shError</a>
+          <a href="api/SuhGeneral/service/shDeferredRequest">shDeferredRequest</a>
         </dt>
         <dd>
-          <p>Handles rejection of <a href="api/SuhGeneral/service/shDeferredRequest">shDeferredRequests</a></p>
+          <p>Provides a unified method to handle AJAX requests</p>
 
         </dd>
     </dl>
@@ -127,20 +140,10 @@ other classes.</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shEventsManager">shEventsManager</a>
+          <a href="api/SuhGeneral/service/shHttp">shHttp</a>
         </dt>
         <dd>
-          <p>A service to handle events.</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shException">shException</a>
-        </dt>
-        <dd>
-          <p>A factory for generating {SuhException} objects</p>
+          <p>Provides an object to create network resources</p>
 
         </dd>
     </dl>
@@ -157,36 +160,6 @@ other classes.</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shHttp">shHttp</a>
-        </dt>
-        <dd>
-          <p>Provides an object to create network resources</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shHttpPostQuery">shHttpPostQuery</a>
-        </dt>
-        <dd>
-          <p>Provides a way to request resources from the server using a chain pattern</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shHttpQuery">shHttpQuery</a>
-        </dt>
-        <dd>
-          <p>Provides a way to request resources from the server using a chain pattern</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
           <a href="api/SuhGeneral/service/shIdentityGenerator">shIdentityGenerator</a>
         </dt>
         <dd>
@@ -197,57 +170,7 @@ other classes.</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/shLocalizer">shLocalizer</a>
-        </dt>
-        <dd>
-          <p>A module to handle localization of an Angular app by providing a way to manage translation files.</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shLOCALE">shLOCALE</a>
-        </dt>
-        <dd>
-          <p>A string representing the current locale of the application.</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shLocationListener">shLocationListener</a>
-        </dt>
-        <dd>
-          <p>implements observer pattern to notify listeners for Location changes.</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shSharedDataRepository">shSharedDataRepository</a>
-        </dt>
-        <dd>
-          <p>a service to share data between controllers</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shStorage">shStorage</a>
-        </dt>
-        <dd>
-          <p>provides an interface for localStorage objects if supported by the browser.</p>
-
-        </dd>
-    </dl>
-    
-    <dl class="uk-description-list-horizontal">
-        <dt>
-          <a href="api/SuhGeneral/service/shSuccess">shSuccess</a>
+          <a href="api/SuhGeneral/service/shResponseHandler">shResponseHandler</a>
         </dt>
         <dd>
           <p>returns a function to be used by the {SuhGeneral.DeferredRequest} service
@@ -258,10 +181,10 @@ in cases of successful calls</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/service/sHUrlInspector">sHUrlInspector</a>
+          <a href="api/SuhGeneral/service/shStorage">shStorage</a>
         </dt>
         <dd>
-          <p>A service to track url changes to specific rules.</p>
+          <p>provides an interface for localStorage objects if supported by the browser.</p>
 
         </dd>
     </dl>
@@ -304,21 +227,22 @@ in cases of successful calls</p>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/type/EventEmitter">EventEmitter</a>
+          <a href="api/SuhGeneral/type/DataTransformer">DataTransformer</a>
         </dt>
         <dd>
-          <p>An abstract class providing basic implementation for event emitters. 
-This class is intended to be inherited from by other classes.</p>
+          <p>A chainable data transformer</p>
 
         </dd>
     </dl>
     
     <dl class="uk-description-list-horizontal">
         <dt>
-          <a href="api/SuhGeneral/type/SuhException">SuhException</a>
+          <a href="api/SuhGeneral/type/EventEmitter">EventEmitter</a>
         </dt>
         <dd>
-          
+          <p>An abstract class providing basic implementation for event emitters. 
+This class is intended to be inherited from by other classes.</p>
+
         </dd>
     </dl>
     

@@ -18,15 +18,21 @@
     "members": ""
   },
   {
-    "path": "api/SuhGeneral/provider/shUrlRulesProvider",
-    "titleWords": "shUrlRulesProvider",
-    "keywords": "api html module partials provider shurlrulesprovider suhgeneral",
-    "members": ""
+    "path": "api/SuhGeneral/provider/shLocalizerProvider",
+    "titleWords": "shLocalizerProvider",
+    "keywords": "angular api apps for html localization module partials provide provider shlocalizerprovider suhgeneral to",
+    "members": "endtag setlocale starttag"
   },
   {
-    "path": "api/SuhGeneral/service/shUrlRules",
-    "titleWords": "shUrlRules",
-    "keywords": "$get api html module partials service shurlrules suhgeneral",
+    "path": "api/SuhGeneral/service/shLocalizer",
+    "titleWords": "shLocalizer",
+    "keywords": "$get an angular api app by files handle html localization manage module of partials providing service shlocalizer suhgeneral to translation way",
+    "members": "get isloaded load ready"
+  },
+  {
+    "path": "api/SuhGeneral/service/shLOCALE",
+    "titleWords": "shLOCALE",
+    "keywords": "$get api application current html locale module of partials representing service shlocale string suhgeneral the",
     "members": ""
   },
   {
@@ -45,7 +51,7 @@
     "path": "api/SuhGeneral/interface/Persistence",
     "titleWords": "Persistence",
     "keywords": "_gc any api basic be by html implemented interface module must partials persistence service storage suhgeneral that",
-    "members": "get store"
+    "members": "get remove store"
   },
   {
     "path": "api/SuhGeneral/type/SuhCacheType",
@@ -54,15 +60,21 @@
     "members": "data disable enable enabled get persist restore store"
   },
   {
-    "path": "api/SuhGeneral/service/shDeferredRequest",
-    "titleWords": "shDeferredRequest",
-    "keywords": "ajax api factory handle html method module partials provides requests service shdeferredrequest sherror shsuccess suhgeneral to unified",
+    "path": "api/SuhGeneral/service/shDataTransformer",
+    "titleWords": "shDataTransformer",
+    "keywords": "allows api chaining data factory for html module partials provide service shdatatransformer simple suhgeneral that transformations transformer",
     "members": ""
   },
   {
-    "path": "api/SuhGeneral/service/shError",
-    "titleWords": "shError",
-    "keywords": "api factory handles html module of partials rejection service shdeferredrequest shdeferredrequests sherror suhgeneral",
+    "path": "api/SuhGeneral/type/DataTransformer",
+    "titleWords": "DataTransformer",
+    "keywords": "_dt api chainable data datatransformer html module partials suhgeneral transformer type",
+    "members": "input original out processor"
+  },
+  {
+    "path": "api/SuhGeneral/service/shDeferredRequest",
+    "titleWords": "shDeferredRequest",
+    "keywords": "ajax api factory handle html method module partials provides requests service shdeferredrequest shresponsehandler suhgeneral to unified",
     "members": ""
   },
   {
@@ -78,45 +90,15 @@
     "members": "addeventlistener events listeners on removeeventlistener trigger"
   },
   {
-    "path": "api/SuhGeneral/service/shEventsManager",
-    "titleWords": "shEventsManager",
-    "keywords": "api complete documentation events factory handle html module partials service sheventsmanager shexception shidentitygenerator suhgeneral to",
-    "members": ""
-  },
-  {
-    "path": "api/SuhGeneral/service/shException",
-    "titleWords": "shException",
-    "keywords": "api code description error exception factory for generating html instance module new objects of partials service shexception suhgeneral",
-    "members": ""
-  },
-  {
-    "path": "api/SuhGeneral/type/SuhException",
-    "titleWords": "SuhException",
-    "keywords": "_ge api code desc description error html module partials suhexception suhgeneral type",
-    "members": "code description"
+    "path": "api/SuhGeneral/service/shHttp",
+    "titleWords": "shHttp",
+    "keywords": "an api as asc base baseurl be conf configuration create default defaults desc dictionary different factory following follows for from html id javascript limit module network object of order orderby page partials provides query requests resources restful restfulcreate restfulurl service shdeferredrequest shhttp shutil suhgeneral the this to url urltemplate use used var will",
+    "members": "create get httpdelete httpget httphead httppost httpput kill perpareurl update"
   },
   {
     "path": "api/SuhGeneral/service/shHttpModel",
     "titleWords": "shHttpModel",
     "keywords": "add api documentation factory html module needs partials service shhttpmodel suhgeneral",
-    "members": ""
-  },
-  {
-    "path": "api/SuhGeneral/service/shHttp",
-    "titleWords": "shHttp",
-    "keywords": "an api create factory html module network object partials provides resources service shdeferredrequest shhttp suhgeneral to",
-    "members": "byany create get kill perpareurl query search update"
-  },
-  {
-    "path": "api/SuhGeneral/service/shHttpPostQuery",
-    "titleWords": "shHttpPostQuery",
-    "keywords": "api chain factory from html module partials pattern provides request resources server service shdeferredrequest shhttppostquery suhgeneral the to using way",
-    "members": ""
-  },
-  {
-    "path": "api/SuhGeneral/service/shHttpQuery",
-    "titleWords": "shHttpQuery",
-    "keywords": "api chain factory from html module partials pattern provides request resources server service shdeferredrequest shhttpquery suhgeneral the to using way",
     "members": ""
   },
   {
@@ -126,46 +108,16 @@
     "members": ""
   },
   {
-    "path": "api/SuhGeneral/service/shLocalizer",
-    "titleWords": "shLocalizer",
-    "keywords": "an angular api app by factory files handle html localization manage module of partials providing service shlocalizer suhgeneral to translation way",
-    "members": "get isloaded load ready"
-  },
-  {
-    "path": "api/SuhGeneral/service/shLOCALE",
-    "titleWords": "shLOCALE",
-    "keywords": "api application current factory html locale module of partials representing service shlocale string suhgeneral the",
+    "path": "api/SuhGeneral/service/shResponseHandler",
+    "titleWords": "shResponseHandler",
+    "keywords": "api be by calls cases data deferred deferredrequest factory from function html in is module object of parameter partials received resolve returns server service shresponsehandler single successful suhgeneral takes that the to used which",
     "members": ""
-  },
-  {
-    "path": "api/SuhGeneral/service/shLocationListener",
-    "titleWords": "shLocationListener",
-    "keywords": "api changes factory for html implements listeners location module notify observer partials pattern service shexception shlocationlistener suhgeneral to",
-    "members": "_process get register unregister"
-  },
-  {
-    "path": "api/SuhGeneral/service/shSharedDataRepository",
-    "titleWords": "shSharedDataRepository",
-    "keywords": "api between controllers data factory html module partials service share shshareddatarepository suhgeneral to",
-    "members": "exists get set"
   },
   {
     "path": "api/SuhGeneral/service/shStorage",
     "titleWords": "shStorage",
     "keywords": "an api browser by factory for html if interface localstorage module objects partials persistence provides service shstorage suhgeneral supported the",
     "members": "_gettype get getfloat getinteger getjson isenabled remove store"
-  },
-  {
-    "path": "api/SuhGeneral/service/shSuccess",
-    "titleWords": "shSuccess",
-    "keywords": "api be by calls cases data deferred deferredrequest factory from function html in is module object of parameter partials received resolve returns server service shsuccess single successful suhgeneral takes that the to used which",
-    "members": ""
-  },
-  {
-    "path": "api/SuhGeneral/service/sHUrlInspector",
-    "titleWords": "sHUrlInspector",
-    "keywords": "api changes factory html module partials rules service shurlinspector specific suhgeneral to track url",
-    "members": ""
   },
   {
     "path": "api/SuhGeneral/service/shUtil",

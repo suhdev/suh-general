@@ -19,6 +19,15 @@ angular.module('SuhGeneral')
 				isEnabled:function(){
 					return enabled;
 				},
+				isSupported:function(){
+					return angular.isDefined(window.localStorage);
+				},
+				enable:function(){
+					enabled = true && o.isSupported();
+				},
+				disable:function(){
+					enabled = false;
+				},
 				/**
 				 * @ngdoc method
 				 * @name shStorage#store
@@ -44,19 +53,36 @@ angular.module('SuhGeneral')
 				 * @ngdoc method
 				 * @name shStorage#remove
 				 * @module SuhGeneral
-				 * @param {string|object}
+				 * @param {string|Array<string>}
 				 * @description stores a key-value pair in the local storage or a dictionary 
 				 */
 				remove:function(key){
+					var result,i;
 					if (enabled){
-						if (angular.isObject(key)){
+						if (angular.isArray(key)){
+							result = [];
 							angular.forEach(key,function(v,k){
-								localStorage.removeItem(k);
+								if ((i = localStorage.getItem(v))){
+									try{
+										i = JSON.parse(i); 
+									}catch(e){
+									}
+									result.push(i);
+									localStorage.removeItem(v);
+								}
 							});
+							result = result.length === 0?undefined:result;
 						}else{
+							result = localStorage.getItem(key);
+							try{
+								result = JSON.parse(result);
+							}catch(e){
+								
+							}
 							localStorage.removeItem(key);
 						}
 					}
+					return result;
 				},
 				/**
 				 * @ngdoc method
@@ -129,6 +155,7 @@ angular.module('SuhGeneral')
 					return o._getType(key,JSON.parse);
 				}
 			};
+		o.enable();
 
 		return o;
 		

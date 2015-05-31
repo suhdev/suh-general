@@ -31,19 +31,14 @@ angular.module('navData', [])
             "href": "api/SuhGeneral/provider"
           },
           {
-            "name": "shUrlRulesProvider",
-            "href": "api/SuhGeneral/provider/shUrlRulesProvider",
+            "name": "shLocalizerProvider",
+            "href": "api/SuhGeneral/provider/shLocalizerProvider",
             "type": "provider"
           },
           {
             "name": "service",
             "type": "section",
             "href": "api/SuhGeneral/service"
-          },
-          {
-            "name": "sHUrlInspector",
-            "href": "api/SuhGeneral/service/sHUrlInspector",
-            "type": "service"
           },
           {
             "name": "shBlockNavigation",
@@ -56,28 +51,18 @@ angular.module('navData', [])
             "type": "service"
           },
           {
+            "name": "shDataTransformer",
+            "href": "api/SuhGeneral/service/shDataTransformer",
+            "type": "service"
+          },
+          {
             "name": "shDeferredRequest",
             "href": "api/SuhGeneral/service/shDeferredRequest",
             "type": "service"
           },
           {
-            "name": "shError",
-            "href": "api/SuhGeneral/service/shError",
-            "type": "service"
-          },
-          {
             "name": "shEventEmitter",
             "href": "api/SuhGeneral/service/shEventEmitter",
-            "type": "service"
-          },
-          {
-            "name": "shEventsManager",
-            "href": "api/SuhGeneral/service/shEventsManager",
-            "type": "service"
-          },
-          {
-            "name": "shException",
-            "href": "api/SuhGeneral/service/shException",
             "type": "service"
           },
           {
@@ -88,16 +73,6 @@ angular.module('navData', [])
           {
             "name": "shHttpModel",
             "href": "api/SuhGeneral/service/shHttpModel",
-            "type": "service"
-          },
-          {
-            "name": "shHttpPostQuery",
-            "href": "api/SuhGeneral/service/shHttpPostQuery",
-            "type": "service"
-          },
-          {
-            "name": "shHttpQuery",
-            "href": "api/SuhGeneral/service/shHttpQuery",
             "type": "service"
           },
           {
@@ -116,28 +91,13 @@ angular.module('navData', [])
             "type": "service"
           },
           {
-            "name": "shLocationListener",
-            "href": "api/SuhGeneral/service/shLocationListener",
-            "type": "service"
-          },
-          {
-            "name": "shSharedDataRepository",
-            "href": "api/SuhGeneral/service/shSharedDataRepository",
+            "name": "shResponseHandler",
+            "href": "api/SuhGeneral/service/shResponseHandler",
             "type": "service"
           },
           {
             "name": "shStorage",
             "href": "api/SuhGeneral/service/shStorage",
-            "type": "service"
-          },
-          {
-            "name": "shSuccess",
-            "href": "api/SuhGeneral/service/shSuccess",
-            "type": "service"
-          },
-          {
-            "name": "shUrlRules",
-            "href": "api/SuhGeneral/service/shUrlRules",
             "type": "service"
           },
           {
@@ -161,6 +121,11 @@ angular.module('navData', [])
             "href": "api/SuhGeneral/type"
           },
           {
+            "name": "DataTransformer",
+            "href": "api/SuhGeneral/type/DataTransformer",
+            "type": "type"
+          },
+          {
             "name": "EventEmitter",
             "href": "api/SuhGeneral/type/EventEmitter",
             "type": "type"
@@ -168,11 +133,6 @@ angular.module('navData', [])
           {
             "name": "SuhCacheType",
             "href": "api/SuhGeneral/type/SuhCacheType",
-            "type": "type"
-          },
-          {
-            "name": "SuhException",
-            "href": "api/SuhGeneral/type/SuhException",
             "type": "type"
           }
         ]

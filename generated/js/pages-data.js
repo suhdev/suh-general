@@ -16,15 +16,20 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/SuhGeneral/directive/shlocalizeAttr"
   },
-  "api/SuhGeneral/provider/shUrlRulesProvider": {
-    "name": "shUrlRulesProvider",
+  "api/SuhGeneral/provider/shLocalizerProvider": {
+    "name": "shLocalizerProvider",
     "area": "api",
-    "path": "api/SuhGeneral/provider/shUrlRulesProvider"
+    "path": "api/SuhGeneral/provider/shLocalizerProvider"
   },
-  "api/SuhGeneral/service/shUrlRules": {
-    "name": "shUrlRules",
+  "api/SuhGeneral/service/shLocalizer": {
+    "name": "shLocalizer",
     "area": "api",
-    "path": "api/SuhGeneral/service/shUrlRules"
+    "path": "api/SuhGeneral/service/shLocalizer"
+  },
+  "api/SuhGeneral/service/shLOCALE": {
+    "name": "shLOCALE",
+    "area": "api",
+    "path": "api/SuhGeneral/service/shLOCALE"
   },
   "api/SuhGeneral/service/shBlockNavigation": {
     "name": "shBlockNavigation",
@@ -46,15 +51,20 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/SuhGeneral/type/SuhCacheType"
   },
+  "api/SuhGeneral/service/shDataTransformer": {
+    "name": "shDataTransformer",
+    "area": "api",
+    "path": "api/SuhGeneral/service/shDataTransformer"
+  },
+  "api/SuhGeneral/type/DataTransformer": {
+    "name": "DataTransformer",
+    "area": "api",
+    "path": "api/SuhGeneral/type/DataTransformer"
+  },
   "api/SuhGeneral/service/shDeferredRequest": {
     "name": "shDeferredRequest",
     "area": "api",
     "path": "api/SuhGeneral/service/shDeferredRequest"
-  },
-  "api/SuhGeneral/service/shError": {
-    "name": "shError",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shError"
   },
   "api/SuhGeneral/service/shEventEmitter": {
     "name": "shEventEmitter",
@@ -66,80 +76,30 @@ angular.module('pagesData', [])
     "area": "api",
     "path": "api/SuhGeneral/type/EventEmitter"
   },
-  "api/SuhGeneral/service/shEventsManager": {
-    "name": "shEventsManager",
+  "api/SuhGeneral/service/shHttp": {
+    "name": "shHttp",
     "area": "api",
-    "path": "api/SuhGeneral/service/shEventsManager"
-  },
-  "api/SuhGeneral/service/shException": {
-    "name": "shException",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shException"
-  },
-  "api/SuhGeneral/type/SuhException": {
-    "name": "SuhException",
-    "area": "api",
-    "path": "api/SuhGeneral/type/SuhException"
+    "path": "api/SuhGeneral/service/shHttp"
   },
   "api/SuhGeneral/service/shHttpModel": {
     "name": "shHttpModel",
     "area": "api",
     "path": "api/SuhGeneral/service/shHttpModel"
   },
-  "api/SuhGeneral/service/shHttp": {
-    "name": "shHttp",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shHttp"
-  },
-  "api/SuhGeneral/service/shHttpPostQuery": {
-    "name": "shHttpPostQuery",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shHttpPostQuery"
-  },
-  "api/SuhGeneral/service/shHttpQuery": {
-    "name": "shHttpQuery",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shHttpQuery"
-  },
   "api/SuhGeneral/service/shIdentityGenerator": {
     "name": "shIdentityGenerator",
     "area": "api",
     "path": "api/SuhGeneral/service/shIdentityGenerator"
   },
-  "api/SuhGeneral/service/shLocalizer": {
-    "name": "shLocalizer",
+  "api/SuhGeneral/service/shResponseHandler": {
+    "name": "shResponseHandler",
     "area": "api",
-    "path": "api/SuhGeneral/service/shLocalizer"
-  },
-  "api/SuhGeneral/service/shLOCALE": {
-    "name": "shLOCALE",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shLOCALE"
-  },
-  "api/SuhGeneral/service/shLocationListener": {
-    "name": "shLocationListener",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shLocationListener"
-  },
-  "api/SuhGeneral/service/shSharedDataRepository": {
-    "name": "shSharedDataRepository",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shSharedDataRepository"
+    "path": "api/SuhGeneral/service/shResponseHandler"
   },
   "api/SuhGeneral/service/shStorage": {
     "name": "shStorage",
     "area": "api",
     "path": "api/SuhGeneral/service/shStorage"
-  },
-  "api/SuhGeneral/service/shSuccess": {
-    "name": "shSuccess",
-    "area": "api",
-    "path": "api/SuhGeneral/service/shSuccess"
-  },
-  "api/SuhGeneral/service/sHUrlInspector": {
-    "name": "sHUrlInspector",
-    "area": "api",
-    "path": "api/SuhGeneral/service/sHUrlInspector"
   },
   "api/SuhGeneral/service/shUtil": {
     "name": "shUtil",

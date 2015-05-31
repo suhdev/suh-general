@@ -1,6 +1,6 @@
 
 
-<a href='https://github.com///tree//../suh-general.js#L711' class='view-source pull-right uk-button uk-button-primary'>
+<a href='https://github.com///tree//../suh-general.js#L792' class='view-source pull-right uk-button uk-button-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
 
@@ -37,13 +37,73 @@
   
   <h2 id="dependencies">Dependencies</h2>
   <ul class="uk-list uk-list-striped dependencies">
-    <li class="uk-text-primary"><a href="api/SuhGeneral/service/shDeferredRequest"><code>shDeferredRequest</code></a> - Provides a unified method to handle AJAX requests</li>
+    <li class="uk-text-primary"><a href="api/SuhGeneral/service/shDeferredRequest"><code>shDeferredRequest</code></a> - Provides a unified method to handle AJAX requests</li><li class="uk-text-primary"><a href="api/SuhGeneral/service/shUtil"><code>shUtil</code></a> - A service containing a set of utility functions.</li>
   </ul>
   
 
     
 
-  
+  <h2 id="usage">Usage</h2>
+    
+      <p><code>shHttp(conf);</code></p>
+
+
+    
+
+    
+<section class="api-section">
+  <h3>Arguments</h3>
+
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        conf
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        <p>a configuration dictionary as follows: </p>
+<pre><code class="lang-javascript">var conf = {
+        //the base url to be used for requests         
+    baseUrl:&#39;/base_url_of_the_entity/${id}&#39;,
+    //the restful url to be used for restful requests (if different from baseUrl)
+    restfulUrl:&#39;/restful_url_of_the_entity/${id}&#39;, 
+    //by default this will be `restfulUrl/create`
+        restfulCreate:&#39;/restful_url_for_create&#39;,
+    //sets the defaults of the requests
+        defaults:{
+        page:0,
+        limit:20,
+        orderBy:&#39;id&#39;,//field
+        order:&#39;asc&#39;|&#39;desc&#39;
+        },
+    //the url to use for query requests, defaults to the following 
+        urlTemplate:&#39;/${model}/${method}/${page}-${limit}/${orderBy}-${order}&#39;
+}
+</code></pre>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+</section>
+    
+    
   <div class="ngdocs-object-todos">
 
 </ul>
@@ -53,7 +113,7 @@
 <ul class="methods uk-list">
   <li id="perpareUrl">
     <hr class="uk-grid-divider">
-    <h3 class="uk-text-primary"><p><code>perpareUrl(method, methodId, page, chunk);</code></p>
+    <h3 class="uk-text-primary"><p><code>perpareUrl(params);</code></p>
 
 </h3>
     <div><p>prepares the URL for the request</p>
@@ -77,64 +137,15 @@
     
     <tr>
       <td>
-        method
+        params
         
         
       </td>
       <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a>
       </td>
       <td>
-        <p>the method to request</p>
-
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        methodId
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">Number</a>
-      </td>
-      <td>
-        <p>the method id to request</p>
-
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        page
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">Number</a>
-      </td>
-      <td>
-        <p>the page no defaults to 0</p>
-
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        chunk
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">Number</a>
-      </td>
-      <td>
-        <p>the request chunk size in 
-cases of arrays defaults to 20</p>
+        <p>the replacements</p>
 
         
       </td>
@@ -296,230 +307,6 @@ with the updated object or rejected with an array of reasons.</p>
 
   </li>
   
-  <li id="search">
-    <hr class="uk-grid-divider">
-    <h3 class="uk-text-primary"><p><code>search(value, obj);</code></p>
-
-</h3>
-    <div><p>Searches the server for resources matching a textual value.</p>
-</div>
-    
-    
-    
-
-    
-    <h4>Parameters</h4>
-    
-<table class="uk-table">
-    <thead>
-        <tr>
-          <th class="uk-width-2-10">Param</th>
-          <th class="uk-width-1-10">Type</th>
-          <th class="uk-width-7-10">Details</th>
-        </tr>
-    </thead>
-    <tbody>
-    
-    <tr>
-      <td>
-        value
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
-      </td>
-      <td>
-        <p>the value to use as a needle</p>
-
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        obj
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-obj">obj</a>
-      </td>
-      <td>
-        <p>the object to send to the server</p>
-
-        
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
-
-    
-
-    
-    
-    
-    <h4>Returns</h4>
-    <table class="uk-table variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
-    <td><p>a promise that is either 
-resolved with an array of items matching the search 
-query or rejected with an array of reasons.</p>
-</td>
-  </tr>
-</table>
-    
-
-
-
-  </li>
-  
-  <li id="search">
-    <hr class="uk-grid-divider">
-    <h3 class="uk-text-primary"><p><code>search(value, obj);</code></p>
-
-</h3>
-    <div><p>generic function to retrieve resources 
-using their parent objects.</p>
-</div>
-    
-    
-    
-
-    
-    <h4>Parameters</h4>
-    
-<table class="uk-table">
-    <thead>
-        <tr>
-          <th class="uk-width-2-10">Param</th>
-          <th class="uk-width-1-10">Type</th>
-          <th class="uk-width-7-10">Details</th>
-        </tr>
-    </thead>
-    <tbody>
-    
-    <tr>
-      <td>
-        value
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
-      </td>
-      <td>
-        <p>the value to use as a needle</p>
-
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td>
-        obj
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-obj">obj</a>
-      </td>
-      <td>
-        <p>the object to send to the server</p>
-
-        
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
-
-    
-
-    
-    
-    
-    <h4>Returns</h4>
-    <table class="uk-table variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
-    <td><p>a promise that is either resolved with 
-an array of items matching the search query or 
-rejected with an array of reasons.</p>
-</td>
-  </tr>
-</table>
-    
-
-
-
-  </li>
-  
-  <li id="kill">
-    <hr class="uk-grid-divider">
-    <h3 class="uk-text-primary"><p><code>kill(id);</code></p>
-
-</h3>
-    <div><p>removes a resource from the server given its id.</p>
-</div>
-    
-    
-    
-
-    
-    <h4>Parameters</h4>
-    
-<table class="uk-table">
-    <thead>
-        <tr>
-          <th class="uk-width-2-10">Param</th>
-          <th class="uk-width-1-10">Type</th>
-          <th class="uk-width-7-10">Details</th>
-        </tr>
-    </thead>
-    <tbody>
-    
-    <tr>
-      <td>
-        id
-        
-        
-      </td>
-      <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">number</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-array">Array.&lt;number&gt;</a>
-      </td>
-      <td>
-        <p>the id of the resource to delete</p>
-
-        
-      </td>
-    </tr>
-    
-  </tbody>
-</table>
-
-    
-
-    
-    
-    
-    <h4>Returns</h4>
-    <table class="uk-table variables-matrix return-arguments">
-  <tr>
-    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
-    <td><p>a promise that is either resolved 
-with the deleted resource or rejected with reasons.</p>
-</td>
-  </tr>
-</table>
-    
-
-
-
-  </li>
-  
   <li id="create">
     <hr class="uk-grid-divider">
     <h3 class="uk-text-primary"><p><code>create(obj);</code></p>
@@ -583,13 +370,12 @@ the created resource with id or rejected with reasons.</p>
 
   </li>
   
-  <li id="byAny">
+  <li id="kill">
     <hr class="uk-grid-divider">
-    <h3 class="uk-text-primary"><p><code>byAny(byObj);</code></p>
+    <h3 class="uk-text-primary"><p><code>kill(id);</code></p>
 
 </h3>
-    <div><p>retrieves resources that matches a given 
-key =&gt; value dictionary</p>
+    <div><p>removes a resource from the server given its id.</p>
 </div>
     
     
@@ -610,15 +396,15 @@ key =&gt; value dictionary</p>
     
     <tr>
       <td>
-        byObj
+        id
         
         
       </td>
       <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">number</a><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-array">Array.&lt;number&gt;</a>
       </td>
       <td>
-        <p>a dictionary used as matching criteria</p>
+        <p>the id(s) of the resource(s) to delete</p>
 
         
       </td>
@@ -637,8 +423,7 @@ key =&gt; value dictionary</p>
   <tr>
     <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
     <td><p>a promise that is either resolved 
-with an array of items matching the byObj query or 
-rejected with an array of reasons.</p>
+with the deleted resource or rejected with reasons.</p>
 </td>
   </tr>
 </table>
@@ -648,12 +433,12 @@ rejected with an array of reasons.</p>
 
   </li>
   
-  <li id="query">
+  <li id="httpPost">
     <hr class="uk-grid-divider">
-    <h3 class="uk-text-primary"><p><code>query(page, chunk);</code></p>
+    <h3 class="uk-text-primary"><p><code>httpPost(url, params, data);</code></p>
 
 </h3>
-    <div><p>retrieves resources by a given</p>
+    <div><p>sends a post request to the server.</p>
 </div>
     
     
@@ -674,15 +459,15 @@ rejected with an array of reasons.</p>
     
     <tr>
       <td>
-        page
+        url
         
         
       </td>
       <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">number</a>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
       </td>
       <td>
-        <p>the page no. to get (defaults to 0)</p>
+        <p>the url to send the post request to.</p>
 
         
       </td>
@@ -690,15 +475,31 @@ rejected with an array of reasons.</p>
     
     <tr>
       <td>
-        chunk
+        params
         
         
       </td>
       <td>
-        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-number">number</a>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-params">params</a>
       </td>
       <td>
-        <p>the chunk size of the results (defaults to 20)</p>
+        <p>any parameters to replace any placeholders in the url</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        data
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        <p>the data to send with the post requst</p>
 
         
       </td>
@@ -716,9 +517,345 @@ rejected with an array of reasons.</p>
     <table class="uk-table variables-matrix return-arguments">
   <tr>
     <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
-    <td><p>a promise that is either resolved with 
-an array of items matching the search query or rejected 
-with an array of reasons.</p>
+    <td><p>a promise that can be either 
+resolved with the requested data or 
+rejected with the reasons of failure</p>
+</td>
+  </tr>
+</table>
+    
+
+
+
+  </li>
+  
+  <li id="httpPut">
+    <hr class="uk-grid-divider">
+    <h3 class="uk-text-primary"><p><code>httpPut(url, params, data);</code></p>
+
+</h3>
+    <div><p>sends a put request to the server.</p>
+</div>
+    
+    
+    
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        url
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the url to send the post request to.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        params
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-params">params</a>
+      </td>
+      <td>
+        <p>any parameters to replace any placeholders in the url</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        data
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-object">object</a>
+      </td>
+      <td>
+        <p>the data to send with the post requst</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
+    <td><p>a promise that can be either 
+resolved with the requested data or 
+rejected with the reasons of failure</p>
+</td>
+  </tr>
+</table>
+    
+
+
+
+  </li>
+  
+  <li id="httpGet">
+    <hr class="uk-grid-divider">
+    <h3 class="uk-text-primary"><p><code>httpGet(url, params);</code></p>
+
+</h3>
+    <div><p>sends a get request to the server.</p>
+</div>
+    
+    
+    
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        url
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the url to send the post request to.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        params
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-params">params</a>
+      </td>
+      <td>
+        <p>any parameters to replace any placeholders in the url</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
+    <td><p>a promise that can be either 
+resolved with the requested data or 
+rejected with the reasons of failure</p>
+</td>
+  </tr>
+</table>
+    
+
+
+
+  </li>
+  
+  <li id="httpDelete">
+    <hr class="uk-grid-divider">
+    <h3 class="uk-text-primary"><p><code>httpDelete(url, params);</code></p>
+
+</h3>
+    <div><p>sends a delete request to the server.</p>
+</div>
+    
+    
+    
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        url
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the url to send the post request to.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        params
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-params">params</a>
+      </td>
+      <td>
+        <p>any parameters to replace any placeholders in the url</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
+    <td><p>a promise that can be either 
+resolved with the requested data or 
+rejected with the reasons of failure</p>
+</td>
+  </tr>
+</table>
+    
+
+
+
+  </li>
+  
+  <li id="httpHead">
+    <hr class="uk-grid-divider">
+    <h3 class="uk-text-primary"><p><code>httpHead(url, params);</code></p>
+
+</h3>
+    <div><p>sends a head request to the server.</p>
+</div>
+    
+    
+    
+
+    
+    <h4>Parameters</h4>
+    
+<table class="uk-table">
+    <thead>
+        <tr>
+          <th class="uk-width-2-10">Param</th>
+          <th class="uk-width-1-10">Type</th>
+          <th class="uk-width-7-10">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+    
+    <tr>
+      <td>
+        url
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-string">string</a>
+      </td>
+      <td>
+        <p>the url to send the post request to.</p>
+
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        params
+        
+        
+      </td>
+      <td>
+        <a href="" class="uk-badge uk-badge-primary label type-hint type-hint-params">params</a>
+      </td>
+      <td>
+        <p>any parameters to replace any placeholders in the url</p>
+
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+
+    
+
+    
+    
+    
+    <h4>Returns</h4>
+    <table class="uk-table variables-matrix return-arguments">
+  <tr>
+    <td><a href="" class="uk-badge uk-badge-primary label type-hint type-hint-promise">Promise</a></td>
+    <td><p>a promise that can be either 
+resolved with the requested data or 
+rejected with the reasons of failure</p>
 </td>
   </tr>
 </table>
@@ -751,7 +888,7 @@ with an array of reasons.</p>
 </div>
 
 
-<a href='https://github.com/angular/angular.js/edit//../suh-general.js?message=docs(shHttp)%3A%20describe%20your%20change...#L711' class='improve-docs uk-badge-primary uk-badge'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
-<a href='https://github.com///tree//../suh-general.js#L711' class='view-source pull-right uk-badge uk-badge-primary'>
+<a href='https://github.com/angular/angular.js/edit//../suh-general.js?message=docs(shHttp)%3A%20describe%20your%20change...#L792' class='improve-docs uk-badge-primary uk-badge'><i class="glyphicon glyphicon-edit">&nbsp;</i>Improve this Doc</a>
+<a href='https://github.com///tree//../suh-general.js#L792' class='view-source pull-right uk-badge uk-badge-primary'>
   <i class="glyphicon glyphicon-zoom-in">&nbsp;</i>View Source
 </a>
