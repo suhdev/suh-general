@@ -5,6 +5,7 @@ var gulp = require('gulp'),
 	stylish = require('jshint-stylish'),
 	ngdocs = require('suh-dgeni-ngdocs'),
 	path = require('canonical-path'),
+	fs = require('fs'),
 	_ = require('lodash'),
 	PATHS = {
 		CSS:{
@@ -133,12 +134,6 @@ gulp.task('ngdocs',['concat-docs-lib','concat-dev'],function(){
 		            menu:[{
 			              	label:'API Reference',
 			              	url:'api'
-			            },{
-			              	label:'Guides',
-			              	url:'guide'
-			            },{
-			            	label:'Suhail',
-			            	url:'suhail'
 			            }
 			        ]
           		},
@@ -160,14 +155,11 @@ gulp.task('ngdocs',['concat-docs-lib','concat-dev'],function(){
 	outputFolder:path.resolve('generated'),
 	homePage:{
 		data:{
-			title:'Suhail Abood Library',
-			description:'A library to do something.',
+			title:'SuhGeneral Angular Module',
+			description:fs.readFileSync('./README.md').toString(),
 			dependencies:[{
 				name:'angular',
 				version:'1.3.15'
-			},{
-				name:'jquery',
-				version:'2.1.13'
 			}]
 		}
 	},
@@ -176,8 +168,7 @@ gulp.task('ngdocs',['concat-docs-lib','concat-dev'],function(){
 	},
 	extraData:{
 		angular:'1.3.15',
-		jquery:'2.1.13',
-		name:'Suhail Abood',
+		name:'SuhGeneral Module',
 		module:{
 			version:'v1.0.0',
 			file:'suh-general.js',

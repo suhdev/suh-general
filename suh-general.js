@@ -823,8 +823,8 @@ angular.module('SuhGeneral')
 		function ($Q,_RQ,_UTIL) {
 
 		var _R = function(conf){
-			this._model = conf.model;
-			if (!this._model){
+			this._model = conf.model || conf;
+			if (!this._model || !angular.isString(this._model)){
 				throw new Error('the model is missing, please provide a model name');
 			}
 			this._defaults = conf.defaults || {

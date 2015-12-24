@@ -1,1 +1,9 @@
 [Wed May 20 23:53:33.989329 2015] [core:error] [pid 56680] [client 127.0.0.1:65064] AH00124: Request exceeded the limit of 10 internal redirects due to probable configuration error. Use 'LimitInternalRecursion' to increase the limit if necessary. Use 'LogLevel debug' to get a backtrace.
+[Tue Jun 09 11:24:53.425204 2015] [:error] [pid 9722] [client 127.0.0.1:56152] PHP Parse error:  syntax error, unexpected 's' (T_STRING), expecting ')' in /Users/suhail/Sites/suh-general/temp.php on line 145
+[Tue Jun 09 11:25:34.397192 2015] [:error] [pid 9734] [client 127.0.0.1:56157] PHP Parse error:  syntax error, unexpected 's' (T_STRING), expecting ')' in /Users/suhail/Sites/suh-general/temp.php on line 145
+[Tue Jun 09 11:25:35.666420 2015] [:error] [pid 9734] [client 127.0.0.1:56157] PHP Parse error:  syntax error, unexpected 's' (T_STRING), expecting ')' in /Users/suhail/Sites/suh-general/temp.php on line 145
+[Tue Jun 09 11:25:52.418226 2015] [:error] [pid 9733] [client 127.0.0.1:56161] PHP Parse error:  syntax error, unexpected 's' (T_STRING), expecting ')' in /Users/suhail/Sites/suh-general/temp.php on line 209
+[Tue Jun 09 11:25:53.408061 2015] [:error] [pid 9733] [client 127.0.0.1:56161] PHP Parse error:  syntax error, unexpected 's' (T_STRING), expecting ')' in /Users/suhail/Sites/suh-general/temp.php on line 209
+[Tue Jun 09 11:26:04.736335 2015] [:error] [pid 9732] [client 127.0.0.1:56166] PHP Parse error:  syntax error, unexpected 's' (T_STRING), expecting ')' in /Users/suhail/Sites/suh-general/temp.php on line 209
+[Tue Jun 09 11:26:06.233244 2015] [:error] [pid 9732] [client 127.0.0.1:56166] PHP Parse error:  syntax error, unexpected 's' (T_STRING), expecting ')' in /Users/suhail/Sites/suh-general/temp.php on line 209
+[Tue Jun 09 11:26:12.499096 2015] [:error] [pid 9722] [client 127.0.0.1:56167] PHP Parse error:  syntax error, unexpected '?' in /Users/suhail/Sites/suh-general/temp.php on line 889
